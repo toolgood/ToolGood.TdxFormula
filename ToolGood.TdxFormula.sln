@@ -9,19 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolGood.TdxFormulaTest", "
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		CUDA|Any CPU = CUDA|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5EC30672-7102-4379-B6A9-553B492E3262}.CUDA|Any CPU.ActiveCfg = CUDA|Any CPU
-		{5EC30672-7102-4379-B6A9-553B492E3262}.CUDA|Any CPU.Build.0 = CUDA|Any CPU
 		{5EC30672-7102-4379-B6A9-553B492E3262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5EC30672-7102-4379-B6A9-553B492E3262}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC30672-7102-4379-B6A9-553B492E3262}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC30672-7102-4379-B6A9-553B492E3262}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA9706C8-04DF-4FD0-8B9A-7154E41CB11E}.CUDA|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA9706C8-04DF-4FD0-8B9A-7154E41CB11E}.CUDA|Any CPU.Build.0 = Debug|Any CPU
 		{FA9706C8-04DF-4FD0-8B9A-7154E41CB11E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FA9706C8-04DF-4FD0-8B9A-7154E41CB11E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9706C8-04DF-4FD0-8B9A-7154E41CB11E}.Release|Any CPU.ActiveCfg = Release|Any CPU
