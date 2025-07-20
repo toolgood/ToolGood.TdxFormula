@@ -45,20 +45,34 @@ namespace ToolGood.TdxFormula
 
 
         #region operator
+        /// <summary>
+        /// 隐性转换
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator double[](TdxNumber obj)
         {
             return obj.vals;
         }
-
+        /// <summary>
+        /// 隐性转换
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator TdxNumber(double[] obj)
         {
             return new TdxNumber(obj);
         }
-
+        /// <summary>
+        /// 隐性转换
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator TdxNumber(List<double> obj)
         {
             return new TdxNumber(obj);
         }
+        /// <summary>
+        /// 隐性转换
+        /// </summary>
+        /// <param name="obj"></param>
         public static implicit operator TdxNumber(bool[] obj)
         {
             double[] array = new double[obj.Length];
@@ -70,11 +84,23 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region this[int i]
+        /// <summary>
+        /// this[i]
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public double this[int i] { get { return vals[i]; } set { vals[i] = value; } }
 
         #endregion
 
         #region operator +
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(TdxNumber a, TdxNumber b)
         {
@@ -85,6 +111,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(double a, TdxNumber b)
         {
@@ -94,6 +126,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(int a, TdxNumber b)
         {
@@ -103,6 +141,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(TdxNumber a, double b)
         {
@@ -112,6 +156,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(TdxNumber a, int b)
         {
@@ -121,7 +171,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
-
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(TdxNumber a, bool[] b)
         {
@@ -132,6 +187,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator +
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator +(bool[] a, TdxNumber b)
         {
@@ -145,6 +206,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator -
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(TdxNumber a, TdxNumber b)
         {
@@ -155,6 +222,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(double a, TdxNumber b)
         {
@@ -164,6 +237,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(int a, TdxNumber b)
         {
@@ -173,6 +252,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(TdxNumber a, double b)
         {
@@ -182,6 +267,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(TdxNumber a, int b)
         {
@@ -191,7 +282,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
-
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(TdxNumber a, bool[] b)
         {
@@ -202,6 +298,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator -
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator -(bool[] a, TdxNumber b)
         {
@@ -215,6 +317,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator *
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(TdxNumber a, TdxNumber b)
         {
@@ -225,6 +333,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(double a, TdxNumber b)
         {
@@ -234,6 +348,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(int a, TdxNumber b)
         {
@@ -243,6 +363,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(TdxNumber a, double b)
         {
@@ -252,6 +378,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(TdxNumber a, int b)
         {
@@ -261,7 +393,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
-
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(TdxNumber a, bool[] b)
         {
@@ -274,6 +411,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator *
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static TdxNumber operator *(bool[] a, TdxNumber b)
         {
@@ -290,6 +433,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator /
+        /// <summary>
+        /// operator /
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator /(TdxNumber a, TdxNumber b)
         {
             if (a.length != b.length) throw new Exception();
@@ -303,6 +452,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator /
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator /(double a, TdxNumber b)
         {
             double[] temp = new double[b.length];
@@ -315,6 +470,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator /
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator /(int a, TdxNumber b)
         {
             double[] temp = new double[b.length];
@@ -327,6 +488,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator /
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator /(TdxNumber a, double b)
         {
             double[] temp = new double[a.length];
@@ -339,6 +506,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator /
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator /(TdxNumber a, int b)
         {
             double[] temp = new double[a.length];
@@ -352,6 +525,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator %
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator %(TdxNumber a, TdxNumber b)
         {
             if (a.length != b.length) throw new Exception();
@@ -365,6 +544,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator %(double a, TdxNumber b)
         {
             double[] temp = new double[b.length];
@@ -377,6 +562,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator %(int a, TdxNumber b)
         {
             double[] temp = new double[b.length];
@@ -389,6 +580,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator %(TdxNumber a, double b)
         {
             double[] temp = new double[a.length];
@@ -401,6 +598,12 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static TdxNumber operator %(TdxNumber a, int b)
         {
             double[] temp = new double[a.length];
@@ -414,6 +617,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator >
+        /// <summary>
+        /// operator >
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >(TdxNumber a, TdxNumber b)
         {
@@ -424,6 +633,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >(double a, TdxNumber b)
         {
@@ -433,6 +648,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >(int a, TdxNumber b)
         {
@@ -442,6 +663,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >(TdxNumber a, double b)
         {
@@ -451,6 +678,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >(TdxNumber a, int b)
         {
@@ -463,6 +696,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator <
+        /// <summary>
+        /// operator &lt;
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <(TdxNumber a, TdxNumber b)
         {
@@ -473,6 +712,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <(double a, TdxNumber b)
         {
@@ -482,6 +727,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <(int a, TdxNumber b)
         {
@@ -491,6 +742,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <(TdxNumber a, double b)
         {
@@ -500,6 +757,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <(TdxNumber a, int b)
         {
@@ -512,6 +775,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator >=
+        /// <summary>
+        /// operator >=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >=(TdxNumber a, TdxNumber b)
         {
@@ -522,6 +791,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >=(double a, TdxNumber b)
         {
@@ -531,6 +806,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >=(int a, TdxNumber b)
         {
@@ -540,6 +821,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >=(TdxNumber a, double b)
         {
@@ -549,6 +836,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator >=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator >=(TdxNumber a, int b)
         {
@@ -561,6 +854,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator <=
+        /// <summary>
+        /// operator &lt;=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <=(TdxNumber a, TdxNumber b)
         {
@@ -571,6 +870,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <=(double a, TdxNumber b)
         {
@@ -580,6 +885,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <=(int a, TdxNumber b)
         {
@@ -589,6 +900,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <=(TdxNumber a, double b)
         {
@@ -598,6 +915,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator &lt;=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator <=(TdxNumber a, int b)
         {
@@ -610,6 +933,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator ==
+        /// <summary>
+        /// operator ==
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator ==(TdxNumber a, TdxNumber b)
         {
@@ -620,6 +949,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator ==
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator ==(double a, TdxNumber b)
         {
@@ -629,6 +964,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator ==
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator ==(int a, TdxNumber b)
         {
@@ -638,6 +979,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator ==
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator ==(TdxNumber a, double b)
         {
@@ -647,6 +994,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator ==
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator ==(TdxNumber a, int b)
         {
@@ -659,6 +1012,12 @@ namespace ToolGood.TdxFormula
         #endregion
 
         #region operator !=
+        /// <summary>
+        /// operator !=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator !=(TdxNumber a, TdxNumber b)
         {
@@ -669,6 +1028,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator !=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator !=(double a, TdxNumber b)
         {
@@ -678,6 +1043,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator !=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator !=(int a, TdxNumber b)
         {
@@ -687,6 +1058,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator !=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator !=(TdxNumber a, double b)
         {
@@ -696,6 +1073,12 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+        /// <summary>
+        /// operator !=
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
         public static bool[] operator !=(TdxNumber a, int b)
         {
@@ -766,7 +1149,10 @@ namespace ToolGood.TdxFormula
         {
             return new double[length];
         }
-
+        /// <summary>
+        /// ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"TdxNumber len: {length}";
