@@ -1,17 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Library</OutputType>
-		<TargetFramework>net7.0</TargetFramework>
-		<Nullable>disable</Nullable>
-		<WarningLevel>5</WarningLevel>
-		<Configurations>Debug;Release;CUDA</Configurations>
-
-	</PropertyGroup>
-
-
-	<ItemGroup>
-		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
 
 </Project>
