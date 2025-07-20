@@ -17,7 +17,7 @@ namespace ToolGood.TdxFormulaTest
                 TdxNumber CLOSE = kday.Select(q => q.Close).ToArray();
                 TdxNumber HIGH = kday.Select(q => q.High).ToArray();
                 TdxNumber LOW = kday.Select(q => q.Low).ToArray();
-                TdxNumber O = kday.Select(q => q.Open).ToArray();
+                TdxNumber OPEN = kday.Select(q => q.Open).ToArray();
 
                 int N = 9;
                 int M1 = 3;

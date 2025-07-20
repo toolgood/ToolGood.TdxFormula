@@ -300,6 +300,30 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Max, Y);
         }
+        /// <summary>
+        /// 求最大值.
+        /// 用法: MAX(A, B)返回A和B中的较大值
+        /// 例如: MAX(CLOSE-OPEN,0)表示若收盘价大于开盘价返回它们的差值,否则返回0
+        /// </summary>
+        /// <param name="N"></param>
+        /// <param name="X"></param>
+        /// <returns></returns>
+        public static TdxNumber MAX(TdxNumber X, double Y)
+        {
+            return X.RunFun2(Math.Max, Y);
+        }
+        /// <summary>
+        /// 求最大值.
+        /// 用法: MAX(A, B)返回A和B中的较大值
+        /// 例如: MAX(CLOSE-OPEN,0)表示若收盘价大于开盘价返回它们的差值,否则返回0
+        /// </summary>
+        /// <param name="N"></param>
+        /// <param name="X"></param>
+        /// <returns></returns>
+        public static TdxNumber MAX(double X, TdxNumber Y)
+        {
+            return Y.RunFun2(Math.Max, X);
+        }
 
         /// <summary>
         /// 求最小值.
@@ -313,6 +337,31 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Min, Y);
         }
+        /// <summary>
+        /// 求最小值.
+        /// 用法: MIN(A, B)返回A和B中的较小值
+        /// 例如: MIN(CLOSE, OPEN)返回开盘价和收盘价中的较小值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber MIN(TdxNumber X, double Y)
+        {
+            return X.RunFun2(Math.Min, Y);
+        }
+        /// <summary>
+        /// 求最小值.
+        /// 用法: MIN(A, B)返回A和B中的较小值
+        /// 例如: MIN(CLOSE, OPEN)返回开盘价和收盘价中的较小值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber MIN(double X, TdxNumber Y)
+        {
+            return Y.RunFun2(Math.Min, X);
+        }
+
         /// <summary>
         /// 乘幂.
         /// 用法: POW(A, B)返回A的B次幂
@@ -337,6 +386,19 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2((m, n) => { return Math.Pow(m, n); }, num);
         }
+        /// <summary>
+        /// 乘幂.
+        /// 用法: POW(A, B)返回A的B次幂
+        /// 例如: POW(CLOSE,3)求得收盘价的3次方
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber POW(double X, TdxNumber num)
+        {
+            return num.RunFun2((m, n) => { return Math.Pow(n, m); }, X);
+        }
+
         /// <summary>
         /// 求最大值.
         /// 用法: MAX(A, B)返回A和B中的较大值
@@ -2055,6 +2117,132 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
         /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(TdxNumber X, TdxNumber Y, double Z)
+        {
+            var array = X.CreateArray();
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i)) {
+                    array[i] = Y[i];
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(bool[] X, TdxNumber Y, double Z)
+        {
+            var array = new double[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i]) {
+                    array[i] = Y[i];
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(TdxNumber X, double Y, TdxNumber Z)
+        {
+            var array = X.CreateArray();
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i)) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z[i];
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(bool[] X, double Y, TdxNumber Z)
+        {
+            var array = new double[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i]) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z[i];
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(TdxNumber X, double Y, double Z)
+        {
+            var array = X.CreateArray();
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i)) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(bool[] X, double Y, double Z)
+        {
+            var array = new double[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i]) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
         /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
@@ -2097,6 +2285,134 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
         /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(TdxNumber X, TdxNumber Y, double Z)
+        {
+            var array = X.CreateArray();
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i) == false) {
+                    array[i] = Y[i];
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(bool[] X, TdxNumber Y, double Z)
+        {
+            var array = new double[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i] == false) {
+                    array[i] = Y[i];
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(TdxNumber X, double Y, TdxNumber Z)
+        {
+            var array = X.CreateArray();
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i) == false) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z[i];
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(bool[] X, double Y, TdxNumber Z)
+        {
+            var array = new double[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i] == false) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z[i];
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(TdxNumber X, double Y, double Z)
+        {
+            var array = X.CreateArray();
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i) == false) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(bool[] X, double Y, double Z)
+        {
+            var array = new double[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i] == false) {
+                    array[i] = Y;
+                } else {
+                    array[i] = Z;
+                }
+            }
+            return new TdxNumber(array);
+        }
+
+
+        /// <summary>
         /// RANGE(A,B,C):A在B和C范围之间,B<A<C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
         /// </summary>
@@ -2112,6 +2428,52 @@ namespace ToolGood.TdxFormula
 
             for (int i = startIndex + 1; i < array.Length; i++) {
                 if (Y[i] < X[i] && X[i] < Z[i]) {
+                    array[i] = 1;
+                } else {
+                    array[i] = 0;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// RANGE(A,B,C):A在B和C范围之间,B<A<C
+        /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber RANGE(TdxNumber X, TdxNumber Y, double Z)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                if (Y[i] < X[i] && X[i] < Z) {
+                    array[i] = 1;
+                } else {
+                    array[i] = 0;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// RANGE(A,B,C):A在B和C范围之间,B<A<C
+        /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber RANGE(TdxNumber X, double Y, TdxNumber Z)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Z[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                if (Y < X[i] && X[i] < Z[i]) {
                     array[i] = 1;
                 } else {
                     array[i] = 0;
@@ -2179,6 +2541,60 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
+        public static TdxNumber BETWEEN(TdxNumber X, TdxNumber Y, double Z)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                if (Y[i] <= X[i] && X[i] <= Z) {
+                    array[i] = 1;
+                } else if (Z >= X[i] && X[i] >= Y[i]) {
+                    array[i] = 1;
+                } else {
+                    array[i] = 0;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 介于.
+        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B<A<C或C<A<B, 否则返回0
+        /// 例如: BETWEEN(CLOSE, MA(CLOSE,10),MA(CLOSE,5))表示收盘价介于5日均线和10日均线之间
+        /// </summary>
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber BETWEEN(TdxNumber X, double Y, TdxNumber Z)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Z[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                if (Y <= X[i] && X[i] <= Z[i]) {
+                    array[i] = 1;
+                } else if (Z[i] >= X[i] && X[i] >= Y) {
+                    array[i] = 1;
+                } else {
+                    array[i] = 0;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 介于.
+        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B<A<C或C<A<B, 否则返回0
+        /// 例如: BETWEEN(CLOSE, MA(CLOSE,10),MA(CLOSE,5))表示收盘价介于5日均线和10日均线之间
+        /// </summary>
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
         public static TdxNumber BETWEEN(TdxNumber X, double Y, double Z)
         {
             var array = X.CreateArray();
@@ -2226,6 +2642,50 @@ namespace ToolGood.TdxFormula
         /// <param name="N"></param>
         /// <param name="M"></param>
         /// <returns></returns>
+        public static TdxNumber SMA(TdxNumber X, TdxNumber N, double M)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            double Y = X[0];
+            array[0] = X[0];
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                Y = (X[i] * M + Y * (N[i] - M)) / N[i];
+                array[i] = Y;
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 返回移动平均
+        /// 用法: SMA(X, N, M) :X的N日移动平均,M为权重,如Y=(X* M+Y'*(N-M))/N
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="N"></param>
+        /// <param name="M"></param>
+        /// <returns></returns>
+        public static TdxNumber SMA(TdxNumber X, double N, TdxNumber M)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            double Y = X[0];
+            array[0] = X[0];
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                Y = (X[i] * M[i] + Y * (N - M[i])) / N;
+                array[i] = Y;
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 返回移动平均
+        /// 用法: SMA(X, N, M) :X的N日移动平均,M为权重,如Y=(X* M+Y'*(N-M))/N
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="N"></param>
+        /// <param name="M"></param>
+        /// <returns></returns>
         public static TdxNumber SMA(TdxNumber X, double N, double M)
         {
             var array = X.CreateArray();
@@ -2258,6 +2718,50 @@ namespace ToolGood.TdxFormula
             array[startIndex] = X[startIndex];
             for (int i = startIndex + 1; i < array.Length; i++) {
                 Y = A[i] * Y + B[i] * X[i];
+                array[i] = Y;
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 返回移动平均
+        /// 用法: TMA(X, A, B),A和B必须小于1,算法 Y = (A * Y'+B*X),其中Y'表示上一周期Y值.初值为X
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
+        public static TdxNumber TMA(TdxNumber X, TdxNumber A, double B)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            double Y = X[startIndex];
+            array[startIndex] = X[startIndex];
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                Y = A[i] * Y + B * X[i];
+                array[i] = Y;
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 返回移动平均
+        /// 用法: TMA(X, A, B),A和B必须小于1,算法 Y = (A * Y'+B*X),其中Y'表示上一周期Y值.初值为X
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <returns></returns>
+        public static TdxNumber TMA(TdxNumber X, double A, TdxNumber B)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            double Y = X[startIndex];
+            array[startIndex] = X[startIndex];
+            for (int i = startIndex + 1; i < array.Length; i++) {
+                Y = A * Y + B[i] * X[i];
                 array[i] = Y;
             }
             return new TdxNumber(array);
@@ -2316,8 +2820,68 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
         /// <summary>
-        /// 返回周期数内是否连涨.
-        /// 用法: UPNDAY(CLOSE, M) 表示连涨M个周期,M为常量
+        /// 两条线维持一定周期后交叉.
+        /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber LONGCROSS(TdxNumber X, double Y, int N)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            for (int i = startIndex + N + 1; i < array.Length; i++) {
+                bool b = false;
+                if (X[i] > Y) {
+                    b = true;
+                    for (int j = 1; j <= N; j++) {
+                        if (X[i - j] >= Y) {
+                            b = false;
+                            break;
+                        }
+                    }
+                }
+                array[i] = b ? 1 : 0;
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 两条线维持一定周期后交叉.
+        /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber LONGCROSS(double X, TdxNumber Y, int N)
+        {
+            var array = Y.CreateArray();
+            var startIndex = 0;
+            while (startIndex < Y.Length && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            for (int i = startIndex + N + 1; i < array.Length; i++) {
+                bool b = false;
+                if (X > Y[i]) {
+                    b = true;
+                    for (int j = 1; j <= N; j++) {
+                        if (X >= Y[i - j]) {
+                            b = false;
+                            break;
+                        }
+                    }
+                }
+                array[i] = b ? 1 : 0;
+            }
+            return new TdxNumber(array);
+        }
+
+
+        /// <summary>
+        /// 返回是否持续存在X>Y
+        /// 用法: NDAY(CLOSE, OPEN,3) 表示连续3日收阳线
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
@@ -2349,6 +2913,75 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+        /// <summary>
+        /// 返回是否持续存在X>Y
+        /// 用法: NDAY(CLOSE, OPEN,3) 表示连续3日收阳线
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber NDAY(TdxNumber X, double Y, int N)
+        {
+            var array = X.CreateArray();
+            var startIndex = 0;
+            while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            var temp = 0;
+            for (int i = startIndex; i < Math.Min(startIndex + N, array.Length); i++) {
+                if (X[i] > Y) {
+                    temp++;
+                } else {
+                    temp = 0;
+                }
+            }
+            for (int i = startIndex + N; i < array.Length; i++) {
+                if (X[i] > Y) {
+                    temp++;
+                    if (temp >= N) {
+                        array[i] = 1;
+                    }
+                } else {
+                    temp = 0;
+                }
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 返回是否持续存在X>Y
+        /// 用法: NDAY(CLOSE, OPEN,3) 表示连续3日收阳线
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber NDAY(double X, TdxNumber Y, int N)
+        {
+            var array = Y.CreateArray();
+            var startIndex = 0;
+            while (startIndex < Y.Length && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+
+            var temp = 0;
+            for (int i = startIndex; i < Math.Min(startIndex + N, array.Length); i++) {
+                if (X > Y[i]) {
+                    temp++;
+                } else {
+                    temp = 0;
+                }
+            }
+            for (int i = startIndex + N; i < array.Length; i++) {
+                if (X > Y[i]) {
+                    temp++;
+                    if (temp >= N) {
+                        array[i] = 1;
+                    }
+                } else {
+                    temp = 0;
+                }
+            }
+            return new TdxNumber(array);
+        }
+
         /// <summary>
         /// EXISTR(X,A,B):是否存在(前几日到前几日间).
         /// 例如: EXISTR(CLOSE>OPEN,10,5) 表示从前10日内到前5日内存在着阳线
@@ -2539,24 +3172,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
-        public static TdxNumber RANKQ(TdxNumber X, int Y, int Z)
-        {
-            var array = X.CreateArray();
-            if (Y <= 0) { Y = 100; } //避免出错
-            if (Z <= 0) { Z = 1; }
 
-            List<double> list = new List<double>(Y);
-            for (int i = 0; i < X.Length; i++) {
-                if (i >= Y) { list.Remove(X[i - Y]); }
-                InsertArray_Min2Max(list, X[i]);
-                if (Z + 1 > list.Count) {
-                    array[i] = list[list.Count - 1];
-                } else {
-                    array[i] = list[Z - 1];
-                }
-            }
-            return new TdxNumber(array);
-        }
         /// <summary>
         /// N周期前的M周期内的第T个最大值.
         /// 用法: FINDHIGH(VAR, N, M, T) :VAR在N日前的M天内第T个最高价
