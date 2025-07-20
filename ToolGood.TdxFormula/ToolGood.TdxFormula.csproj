@@ -1,8 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Description>ToolGood.TdxFormula </Description>
+		<Copyright>Copyright 2025 ToolGood</Copyright>
+		<AssemblyTitle>ToolGood.TdxFormula</AssemblyTitle>
+		<Authors>ToolGood</Authors>
+		<TargetFrameworks>netstandard2.1;net8.0;net9.0</TargetFrameworks>
+		<AssemblyName>ToolGood.TdxFormula</AssemblyName>
+		<PublicSign>true</PublicSign>
+		<PackageId>ToolGood.TdxFormula</PackageId>
+		<PackageTags>tdx</PackageTags>
+		<PackageProjectUrl>https://github.com/toolgood/ToolGood.TdxFormula</PackageProjectUrl>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<RepositoryType>git</RepositoryType>
+		<RootNamespace>ToolGood.TdxFormula</RootNamespace>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Product>ToolGood.TdxFormula</Product>
+		<SignAssembly>True</SignAssembly>
+		<Version>4.0.0.2</Version>
+		<DelaySign>false</DelaySign>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.TdxFormula.xml</DocumentationFile>
+		<Nullable>disable</Nullable>
+		<Title>ToolGood.TdxFormula</Title>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl></RepositoryUrl>
+		<AssemblyOriginatorKeyFile>ToolGood.TdxFormula.snk</AssemblyOriginatorKeyFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Update="LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 </Project>
