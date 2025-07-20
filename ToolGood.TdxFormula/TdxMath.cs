@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ToolGood.TdxFormula
 {
+    /// <summary>
+    /// tdx 数学类
+    /// </summary>
     public static class TdxMath
     {
         /// <summary>
@@ -115,7 +118,6 @@ namespace ToolGood.TdxFormula
         /// 例如: LOG(100,10)等于2
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber LOG(TdxNumber X)
         {
@@ -127,7 +129,7 @@ namespace ToolGood.TdxFormula
         /// 例如: LOG(100,10)等于2
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber LOG(TdxNumber X, double num)
         {
@@ -139,7 +141,7 @@ namespace ToolGood.TdxFormula
         /// 例如: LOG(100,10)等于2
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber LOG(TdxNumber X, TdxNumber num)
         {
@@ -225,6 +227,7 @@ namespace ToolGood.TdxFormula
         /// 用法: ROUND(X,N),返回X四舍五入到个位的数值
         /// </summary>
         /// <param name="X"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber ROUND(TdxNumber X, int num)
         {
@@ -235,6 +238,7 @@ namespace ToolGood.TdxFormula
         /// 用法: ROUND(X,N),返回X四舍五入到个位的数值
         /// </summary>
         /// <param name="X"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber ROUND(TdxNumber X, TdxNumber num)
         {
@@ -242,9 +246,9 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 取符号.
-        /// 用法: SIGN(X),返回X的符号.当X>0,X=0,X<0分别返回1,0,-1
+        /// 用法: SIGN(X),返回X的符号.当X>0,X=0,X&lt;0分别返回1,0,-1
         /// </summary>
-        /// <param name="A"></param>
+        /// <param name="X"></param>
         /// <returns></returns>
         public static TdxNumber SIGN(TdxNumber X)
         {
@@ -256,7 +260,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MOD(M, N),返回M关于N的模(M除以N的余数)
         /// 例如: MOD(5,3)返回2 注意:公式系统对有效数字部分有要求,如果数字部分超过7-8位,会有精度丢失
         /// </summary>
-        /// <param name="A"></param>
+        /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber MOD(TdxNumber X, TdxNumber N)
@@ -268,7 +272,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MOD(M, N),返回M关于N的模(M除以N的余数)
         /// 例如: MOD(5,3)返回2 注意:公式系统对有效数字部分有要求,如果数字部分超过7-8位,会有精度丢失
         /// </summary>
-        /// <param name="A"></param>
+        /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber MOD(TdxNumber X, double N)
@@ -280,7 +284,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MOD(M, N),返回M关于N的模(M除以N的余数)
         /// 例如: MOD(5,3)返回2 注意:公式系统对有效数字部分有要求,如果数字部分超过7-8位,会有精度丢失
         /// </summary>
-        /// <param name="A"></param>
+        /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber MOD(double X, TdxNumber N)
@@ -293,8 +297,8 @@ namespace ToolGood.TdxFormula
         /// 用法: MAX(A, B)返回A和B中的较大值
         /// 例如: MAX(CLOSE-OPEN,0)表示若收盘价大于开盘价返回它们的差值,否则返回0
         /// </summary>
-        /// <param name="N"></param>
         /// <param name="X"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber MAX(TdxNumber X, TdxNumber Y)
         {
@@ -305,7 +309,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MAX(A, B)返回A和B中的较大值
         /// 例如: MAX(CLOSE-OPEN,0)表示若收盘价大于开盘价返回它们的差值,否则返回0
         /// </summary>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <param name="X"></param>
         /// <returns></returns>
         public static TdxNumber MAX(TdxNumber X, double Y)
@@ -317,7 +321,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MAX(A, B)返回A和B中的较大值
         /// 例如: MAX(CLOSE-OPEN,0)表示若收盘价大于开盘价返回它们的差值,否则返回0
         /// </summary>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <param name="X"></param>
         /// <returns></returns>
         public static TdxNumber MAX(double X, TdxNumber Y)
@@ -331,7 +335,7 @@ namespace ToolGood.TdxFormula
         /// 例如: MIN(CLOSE, OPEN)返回开盘价和收盘价中的较小值
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber MIN(TdxNumber X, TdxNumber Y)
         {
@@ -343,7 +347,7 @@ namespace ToolGood.TdxFormula
         /// 例如: MIN(CLOSE, OPEN)返回开盘价和收盘价中的较小值
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber MIN(TdxNumber X, double Y)
         {
@@ -355,7 +359,7 @@ namespace ToolGood.TdxFormula
         /// 例如: MIN(CLOSE, OPEN)返回开盘价和收盘价中的较小值
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber MIN(double X, TdxNumber Y)
         {
@@ -368,7 +372,7 @@ namespace ToolGood.TdxFormula
         /// 例如: POW(CLOSE,3)求得收盘价的3次方
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber POW(TdxNumber X, double num)
         {
@@ -380,7 +384,7 @@ namespace ToolGood.TdxFormula
         /// 例如: POW(CLOSE,3)求得收盘价的3次方
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber POW(TdxNumber X, TdxNumber num)
         {
@@ -392,7 +396,7 @@ namespace ToolGood.TdxFormula
         /// 例如: POW(CLOSE,3)求得收盘价的3次方
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="num"></param>
         /// <returns></returns>
         public static TdxNumber POW(double X, TdxNumber num)
         {
@@ -404,8 +408,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MAX(A, B)返回A和B中的较大值
         /// 例如: MAX(CLOSE-OPEN,0)表示若收盘价大于开盘价返回它们的差值,否则返回0
         /// </summary>
-        /// <param name="N"></param>
-        /// <param name="X"></param>
+        /// <param name="Values"></param>
         /// <returns></returns>
         public static double[] MAX(params TdxNumber[] Values)
         {
@@ -433,8 +436,7 @@ namespace ToolGood.TdxFormula
         /// 用法: MIN(A, B)返回A和B中的较小值
         /// 例如: MIN(CLOSE, OPEN)返回开盘价和收盘价中的较小值
         /// </summary>
-        /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Values"></param>
         /// <returns></returns>
         public static double[] MIN(params TdxNumber[] Values)
         {
@@ -481,6 +483,11 @@ namespace ToolGood.TdxFormula
             Array.Fill(array, X[array.Length]);
             return new TdxNumber(array);
         }
+        /// <summary>
+        /// 判断时否有效值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <returns></returns>
         public static TdxNumber ISVALID(TdxNumber X)
         {
             return X.RunFun((m) => {
@@ -691,11 +698,22 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
-
+        /// <summary>
+        /// 并且
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <returns></returns>
         public static TdxNumber AND(TdxNumber X, TdxNumber Y)
         {
             return X.RunFun2((m, n) => { return m != 0 && n != 0 ? 1 : 0; }, Y);
         }
+        /// <summary>
+        /// 或者
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <returns></returns>
         public static TdxNumber OR(TdxNumber X, TdxNumber Y)
         {
             return X.RunFun2((m, n) => { return m != 0 || n != 0 ? 1 : 0; }, Y);
@@ -742,7 +760,7 @@ namespace ToolGood.TdxFormula
         /// 比如: ZTPrice(REF(QHJSJ,1),0.1),得到期货的涨停价
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber ZTPRICE(TdxNumber X, double Y)
         {
@@ -758,7 +776,7 @@ namespace ToolGood.TdxFormula
         /// 比如: ZTPrice(REF(QHJSJ,1),0.1),得到期货的涨停价
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber ZTPRICE(TdxNumber X, TdxNumber Y)
         {
@@ -774,7 +792,7 @@ namespace ToolGood.TdxFormula
         /// 比如: DTPrice(REF(QHJSJ,1),0.6),得到期货的跌停价(跌停比例为0.6的话)
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber DTPRICE(TdxNumber X, double Y)
         {
@@ -790,7 +808,7 @@ namespace ToolGood.TdxFormula
         /// 比如: DTPrice(REF(QHJSJ,1),0.6),得到期货的跌停价(跌停比例为0.6的话)
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="N"></param>
+        /// <param name="Y"></param>
         /// <returns></returns>
         public static TdxNumber DTPRICE(TdxNumber X, TdxNumber Y)
         {
@@ -894,7 +912,7 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 统计满足条件的周期数.
-        /// 用法: COUNT(X, N),统计N周期中满足X条件的周期数,若N<0则从第一个有效值开始.
+        /// 用法: COUNT(X, N),统计N周期中满足X条件的周期数,若N&lt;0则从第一个有效值开始.
         /// 例如: COUNT(CLOSE>OPEN,20)表示统计20周期内收阳的周期数
         /// </summary>
         /// <param name="X"></param>
@@ -924,7 +942,7 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 统计满足条件的周期数.
-        /// 用法: COUNT(X, N),统计N周期中满足X条件的周期数,若N<0则从第一个有效值开始.
+        /// 用法: COUNT(X, N),统计N周期中满足X条件的周期数,若N&lt;0则从第一个有效值开始.
         /// 例如: COUNT(CLOSE>OPEN,20)表示统计20周期内收阳的周期数
         /// </summary>
         /// <param name="X"></param>
@@ -2413,7 +2431,7 @@ namespace ToolGood.TdxFormula
 
 
         /// <summary>
-        /// RANGE(A,B,C):A在B和C范围之间,B<A<C
+        /// RANGE(A,B,C):A在B和C范围之间,B &lt; A &lt; C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
         /// </summary>
         /// <param name="X"></param>
@@ -2436,7 +2454,7 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
         /// <summary>
-        /// RANGE(A,B,C):A在B和C范围之间,B<A<C
+        /// RANGE(A,B,C):A在B和C范围之间,B&lt;A&lt;C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
         /// </summary>
         /// <param name="X"></param>
@@ -2459,7 +2477,7 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
         /// <summary>
-        /// RANGE(A,B,C):A在B和C范围之间,B<A<C
+        /// RANGE(A,B,C):A在B和C范围之间,B&lt;A&lt;C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
         /// </summary>
         /// <param name="X"></param>
@@ -2482,7 +2500,7 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
         /// <summary>
-        /// RANGE(A,B,C):A在B和C范围之间,B<A<C
+        /// RANGE(A,B,C):A在B和C范围之间,B&lt;A&lt;C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
         /// </summary>
         /// <param name="X"></param>
@@ -2506,9 +2524,8 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 介于.
-        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B<A<C或C<A<B, 否则返回0
+        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B &lt; A &lt; C或C &lt; A &lt;B, 否则返回0
         /// 例如: BETWEEN(CLOSE, MA(CLOSE,10),MA(CLOSE,5))表示收盘价介于5日均线和10日均线之间
-        /// </summary>
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
@@ -2533,9 +2550,8 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 介于.
-        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B<A<C或C<A<B, 否则返回0
+        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B &lt; A &lt; C或C &lt; A &lt;B, 否则返回0
         /// 例如: BETWEEN(CLOSE, MA(CLOSE,10),MA(CLOSE,5))表示收盘价介于5日均线和10日均线之间
-        /// </summary>
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
@@ -2560,9 +2576,8 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 介于.
-        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B<A<C或C<A<B, 否则返回0
+        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B&lt;A&lt;C或C&lt;A&lt;B, 否则返回0
         /// 例如: BETWEEN(CLOSE, MA(CLOSE,10),MA(CLOSE,5))表示收盘价介于5日均线和10日均线之间
-        /// </summary>
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
@@ -2587,9 +2602,8 @@ namespace ToolGood.TdxFormula
         }
         /// <summary>
         /// 介于.
-        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B<A<C或C<A<B, 否则返回0
+        /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B&lt;A&lt;C或C&lt;A&lt;B, 否则返回0
         /// 例如: BETWEEN(CLOSE, MA(CLOSE,10),MA(CLOSE,5))表示收盘价介于5日均线和10日均线之间
-        /// </summary>
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
@@ -2794,8 +2808,8 @@ namespace ToolGood.TdxFormula
         /// 两条线维持一定周期后交叉.
         /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
         /// </summary>
-        /// <param name="A"></param>
-        /// <param name="B"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
         /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber LONGCROSS(TdxNumber X, TdxNumber Y, int N)
@@ -2823,8 +2837,8 @@ namespace ToolGood.TdxFormula
         /// 两条线维持一定周期后交叉.
         /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
         /// </summary>
-        /// <param name="A"></param>
-        /// <param name="B"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
         /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber LONGCROSS(TdxNumber X, double Y, int N)
@@ -2852,8 +2866,8 @@ namespace ToolGood.TdxFormula
         /// 两条线维持一定周期后交叉.
         /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
         /// </summary>
-        /// <param name="A"></param>
-        /// <param name="B"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
         /// <param name="N"></param>
         /// <returns></returns>
         public static TdxNumber LONGCROSS(double X, TdxNumber Y, int N)

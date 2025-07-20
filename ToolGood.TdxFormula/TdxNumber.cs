@@ -14,14 +14,27 @@ namespace ToolGood.TdxFormula
     {
         private int length;
         private double[] vals;
+        /// <summary>
+        /// 长度
+        /// </summary>
         public int Length => length;
+        /// <summary>
+        /// 值
+        /// </summary>
         public double[] Values => vals;
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="value"></param>
         public TdxNumber(double[] value)
         {
             vals = value;
             length = value.Length;
         }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="value"></param>
         public TdxNumber(List<double> value)
         {
             vals = value.ToArray();
