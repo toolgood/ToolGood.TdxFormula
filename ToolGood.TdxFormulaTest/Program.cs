@@ -13,8 +13,9 @@ namespace ToolGood.TdxFormulaTest
                 var kday = helper.Select<DbKDay>("order by date desc limit 420");
 
                 KDJ(kday, 9, 3, 3);
-
             }
+            PetaTest.Runner.RunMain(args);
+
         }
         private static void KDJ(List<DbKDay> kday, int N, int M1, int M2)
         {
