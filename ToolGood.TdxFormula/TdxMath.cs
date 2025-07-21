@@ -265,7 +265,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MOD(TdxNumber X, TdxNumber N)
         {
-            var array = new double[X.Length];   
+            var array = new double[X.Length];
             for (int i = 0; i < X.Length; i++) {
                 array[i] = Math.Round(X[i], 0, MidpointRounding.AwayFromZero) % (int)N[i];
             }
@@ -974,6 +974,11 @@ namespace ToolGood.TdxFormula
                     }
                 }
             }
+            for (int i = 0; i < array.Length; i++) {
+                if (array[i] == -1) {
+                    array[i] = double.NaN;
+                }
+            }
             return new TdxNumber(array);
         }
         /// <summary>
@@ -1000,7 +1005,7 @@ namespace ToolGood.TdxFormula
                 }
             }
             for (int i = 0; i < array.Length; i++) {
-                if (array[i]==-1) {
+                if (array[i] == -1) {
                     array[i] = double.NaN;
                 }
             }
