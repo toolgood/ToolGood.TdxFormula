@@ -270,13 +270,13 @@ namespace ToolGood.TdxFormulaTest
             TdxNumber HIGH = data.Select(q => q.HIGH).ToArray();
             var TEST = BARSSINCEN(HIGH > 16, 10);
 
-            //for (int i = 20; i < TEST.Length; i++) {
-            //    if (double.IsNaN(TEST[i])) {
-            //        Assert.AreEqual(-4.03981033463327E+34, data[i].Value, 0.001);
-            //    } else {
-            //        Assert.AreEqual(TEST[i], data[i].Value, 0.001);
-            //    }
-            //}
+            for (int i = 20; i < TEST.Length; i++) {
+                if (double.IsNaN(TEST[i])) {
+                    Assert.AreEqual(-4.03981033463327E+34, data[i].Value, 0.001);
+                } else {
+                    Assert.AreEqual(TEST[i], data[i].Value, 0.001);
+                }
+            }
         }
         [Test]
         public void BARSLASTCOUNT_Test()
@@ -999,10 +999,8 @@ namespace ToolGood.TdxFormulaTest
             TdxNumber H = data.Select(q => q.HIGH).ToArray();
             var TEST = MOD(C, 5);
 
-            // 通达信 MOD 只求 整数
-
             for (int i = 20; i < TEST.Length; i++) {
-               // Assert.AreEqual(TEST[i], data[i].Value, 0.001);
+                Assert.AreEqual(TEST[i], data[i].Value, 0.001);
             }
         }
         [Test]

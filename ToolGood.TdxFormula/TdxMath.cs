@@ -265,7 +265,11 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MOD(TdxNumber X, TdxNumber N)
         {
-            return X % N;
+            var array = new double[X.Length];   
+            for (int i = 0; i < X.Length; i++) {
+                array[i] = Math.Round(X[i], 0, MidpointRounding.AwayFromZero) % (int)N[i];
+            }
+            return array;
         }
         /// <summary>
         /// 取模.
@@ -277,7 +281,11 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MOD(TdxNumber X, double N)
         {
-            return X % N;
+            var array = new double[X.Length];
+            for (int i = 0; i < X.Length; i++) {
+                array[i] = Math.Round(X[i], 0, MidpointRounding.AwayFromZero) % (int)N;
+            }
+            return array;
         }
         /// <summary>
         /// 取模.
@@ -289,7 +297,11 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MOD(double X, TdxNumber N)
         {
-            return X % N;
+            var array = new double[N.Length];
+            for (int i = 0; i < N.Length; i++) {
+                array[i] = Math.Round(X, 0, MidpointRounding.AwayFromZero) % (int)N[i];
+            }
+            return array;
         }
 
         /// <summary>
@@ -976,7 +988,7 @@ namespace ToolGood.TdxFormula
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
-                array[i] = double.NaN;
+                array[i] = -1;
             }
 
             for (int i = 0; i < array.Length; i++) {
