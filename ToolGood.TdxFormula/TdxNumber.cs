@@ -1111,15 +1111,6 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(temp);
         }
         [System.Diagnostics.DebuggerNonUserCode]
-        internal TdxNumber RunFun2(Func<double, double, double> fun, int num)
-        {
-            double[] temp = new double[length];
-            for (int i = 0; i < length; i++) {
-                temp[i] = fun(vals[i], num);
-            }
-            return new TdxNumber(temp);
-        }
-        [System.Diagnostics.DebuggerNonUserCode]
         internal TdxNumber RunFun2(Func<double, double, double> fun, double num)
         {
             double[] temp = new double[length];
@@ -1144,7 +1135,8 @@ namespace ToolGood.TdxFormula
         {
             return vals[i] != 0;
         }
-  
+
+        #region override
         /// <summary>
         /// ToString
         /// </summary>
@@ -1153,5 +1145,26 @@ namespace ToolGood.TdxFormula
         {
             return $"TdxNumber len: {length}";
         }
+
+        /// <summary>
+        /// Equals
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            return obj is TdxNumber number &&
+                   length == number.length &&
+                   EqualityComparer<double[]>.Default.Equals(vals, number.vals);
+        }
+        /// <summary>
+        /// GetHashCode
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(length, vals);
+        } 
+        #endregion
     }
 }
