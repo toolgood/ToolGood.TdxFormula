@@ -22,9 +22,9 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber NOT(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
-                if (array[i] == 0) { array[i] = 1; }
+                if (X[i] == 0) { array[i] = 1; }
             }
             return new TdxNumber(array);
         }
@@ -479,8 +479,8 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber CONST(TdxNumber X)
         {
-            var array = X.CreateArray();
-            Array.Fill(array, X[array.Length]);
+            var array = new double[X.Length];
+            Array.Fill(array, X[array.Length - 1]);
             return new TdxNumber(array);
         }
         /// <summary>
@@ -505,7 +505,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BARSLAST(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             int count = 0;
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i)) {
@@ -547,7 +547,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BARSLASTCOUNT(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             int count = 0;
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i) == false) {
@@ -588,7 +588,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BARSCOUNT(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
 
             var startIndex = 0;
             while (startIndex < array.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
@@ -607,7 +607,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BARSSINCE(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             int count = -1;
             bool first = false;
             for (int i = 0; i < array.Length; i++) {
@@ -661,7 +661,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LOWRANGE(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 int index = 0;
                 var num = X[i];
@@ -684,7 +684,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber TOPRANGE(TdxNumber X)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 int index = 0;
                 var num = X[i];
@@ -702,22 +702,100 @@ namespace ToolGood.TdxFormula
         /// 并且
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="Y"></param>
+        /// <param name="Xs"></param>
         /// <returns></returns>
-        public static TdxNumber AND(TdxNumber X, TdxNumber Y)
+        public static bool[] AND(TdxNumber X, params TdxNumber[] Xs)
         {
-            return X.RunFun2((m, n) => { return m != 0 && n != 0 ? 1 : 0; }, Y);
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i) == false) { continue; }
+                bool b = true;
+                for (int j = 0; j < Xs.Length; j++) {
+                    if (Xs[j].GetBoolean(i) == false) {
+                        b = false;
+                        break;
+                    }
+                }
+                array[i] = b;
+            }
+            return array;
         }
+        /// <summary>
+        /// 并且
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Xs"></param>
+        /// <returns></returns>
+        public static bool[] AND(TdxNumber X, params bool[][] Xs)
+        {
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i) == false) { continue; }
+                bool b = true;
+                for (int j = 0; j < Xs.Length; j++) {
+                    if (Xs[j][i] == false) {
+                        b = false;
+                        break;
+                    }
+                }
+                array[i] = b;
+            }
+            return array;
+        }
+
         /// <summary>
         /// 或者
         /// </summary>
         /// <param name="X"></param>
-        /// <param name="Y"></param>
+        /// <param name="Xs"></param>
         /// <returns></returns>
-        public static TdxNumber OR(TdxNumber X, TdxNumber Y)
+        public static bool[] OR(TdxNumber X, params TdxNumber[] Xs)
         {
-            return X.RunFun2((m, n) => { return m != 0 || n != 0 ? 1 : 0; }, Y);
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i)) {
+                    array[i] = true;
+                    continue;
+                }
+                bool b = false;
+                for (int j = 0; j < Xs.Length; j++) {
+                    if (Xs[j].GetBoolean(i)) {
+                        b = true;
+                        break;
+                    }
+                }
+                array[i] = b;
+            }
+            return array;
         }
+
+        /// <summary>
+        /// 或者
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Xs"></param>
+        /// <returns></returns>
+        public static bool[] OR(TdxNumber X, params bool[][] Xs)
+        {
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i)) {
+                    array[i] = true;
+                    continue;
+                }
+                bool b = false;
+                for (int j = 0; j < Xs.Length; j++) {
+                    if (Xs[j][i]) {
+                        b = true;
+                        break;
+                    }
+                }
+                array[i] = b;
+            }
+            return array;
+        }
+
+
         /// <summary>
         /// 引用若干周期前的数据.
         /// 用法: REF(X, A),引用A周期前的X值.A可以是变量.
@@ -728,7 +806,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber REF(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = array.Length - 1; i >= 0; i--) {
                 var idx = i - N;
                 if (idx < 0) idx = 0;
@@ -746,7 +824,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber REF(TdxNumber X, TdxNumber N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = array.Length - 1; i >= 0; i--) {
                 var idx = i - (int)N[i];
                 if (idx < 0) idx = 0;
@@ -764,7 +842,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber ZTPRICE(TdxNumber X, double Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 array[i] = Math.Round(X[i] * (1 + Y), 2, MidpointRounding.AwayFromZero);
             }
@@ -780,7 +858,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber ZTPRICE(TdxNumber X, TdxNumber Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 array[i] = Math.Round(X[i] * (1 + Y[i]), 2, MidpointRounding.AwayFromZero);
             }
@@ -796,7 +874,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber DTPRICE(TdxNumber X, double Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 array[i] = Math.Round(X[i] * (1 - Y), 2, MidpointRounding.AwayFromZero);
             }
@@ -812,7 +890,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber DTPRICE(TdxNumber X, TdxNumber Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 array[i] = Math.Round(X[i] * (1 - Y[i]), 2, MidpointRounding.AwayFromZero);
             }
@@ -828,8 +906,8 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber CROSS(TdxNumber X, TdxNumber Y)
         {
-            var array = X.CreateArray();
-            for (int i = 0; i < array.Length; i++) {
+            var array = new double[X.Length];
+            for (int i = 1; i < array.Length; i++) {
                 if (X[i - 1] < Y[i - 1]) {
                     if (X[i] > Y[i]) {
                         array[i] = 1;
@@ -850,7 +928,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber CROSS(TdxNumber X, double Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X[i - 1] < Y) {
                     if (X[i] > Y) {
@@ -872,7 +950,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BARSSINCEN(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 array[i] = -1;
             }
@@ -898,8 +976,9 @@ namespace ToolGood.TdxFormula
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
-                array[i] = -1;
+                array[i] = double.NaN;
             }
+
             for (int i = 0; i < array.Length; i++) {
                 if (X[i] == false) { continue; }
                 for (int j = 0; j < N; j++) {
@@ -920,7 +999,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber COUNT(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             int index = 0;
             if (N <= 0) {
                 for (int i = 0; i < array.Length; i++) {
@@ -980,7 +1059,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber HHV(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1020,7 +1099,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber HHVBARS(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             N = Math.Max(N, 0);
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
@@ -1078,7 +1157,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LLV(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             double min = double.MaxValue;
@@ -1118,7 +1197,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LLVBARS(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1175,7 +1254,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber SUM(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1206,14 +1285,39 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber SUMBARS(TdxNumber X, int N)
+        public static TdxNumber SUMBARS(TdxNumber X, double N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = array.Length - 1; i >= 0; i--) {
                 double sum = 0;
                 int index = i;
                 int count = 0;
                 while (index >= 0 && sum < N) {
+                    count++;
+                    sum += X[index];
+                    index--;
+                }
+                array[i] = count;
+            }
+            array.Reverse();
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 向前累加到指定值到现在的周期数.
+        /// 用法: SUMBARS(X, A) :将X向前累加直到大于等于A,返回这个区间的周期数,若所有的数据都累加后还不能达到A,则返回此时前面的总周期数.
+        /// 例如: SUMBARS(VOL, CAPITAL)求完全换手到现在的周期数
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="N"></param>
+        /// <returns></returns>
+        public static TdxNumber SUMBARS(TdxNumber X, TdxNumber N)
+        {
+            var array = new double[X.Length];
+            for (int i = array.Length - 1; i >= 0; i--) {
+                double sum = 0;
+                int index = i;
+                int count = 0;
+                while (index >= 0 && sum < N[i]) {
                     count++;
                     sum += X[index];
                     index--;
@@ -1232,7 +1336,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MA(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1259,7 +1363,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber EMA(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1281,7 +1385,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MEMA(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1303,7 +1407,7 @@ namespace ToolGood.TdxFormula
         /// <exception cref="Exception"></exception>
         public static TdxNumber AMA(TdxNumber X, double N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1327,7 +1431,7 @@ namespace ToolGood.TdxFormula
         /// <exception cref="Exception"></exception>
         public static TdxNumber DMA(TdxNumber X, TdxNumber A)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1354,7 +1458,7 @@ namespace ToolGood.TdxFormula
         /// <exception cref="Exception"></exception>
         public static TdxNumber DMA(TdxNumber X, double A)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1378,7 +1482,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber WMA(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var temp = (1 + N) * N / 2;
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
@@ -1402,7 +1506,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FILTER(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var skipCount = 0;
             for (int i = 0; i < array.Length; i++) {
                 if (skipCount > 0) {
@@ -1456,7 +1560,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FILTERX(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var skipCount = 0;
             for (int i = array.Length - 1; i >= 0; i--) {
                 if (skipCount > 0) {
@@ -1510,7 +1614,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber HOD(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -1546,7 +1650,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LOD(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(Math.Min(400, N)); // 从大到小
@@ -1582,7 +1686,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber MULAR(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             double sum = 1;
@@ -1614,7 +1718,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber UPNDAY(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             var temp = 0;
@@ -1644,7 +1748,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber DOWNNDAY(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             var temp = 0;
@@ -1674,7 +1778,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber EXIST(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 //bool b = false;
                 for (int j = i; j >= Math.Max(i - N + 1, 0); j--) {
@@ -1720,7 +1824,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber EVERY(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var temp = 0;
             for (int i = 0; i < Math.Min(N, array.Length); i++) {
                 if (X.GetBoolean(i)) {
@@ -1779,7 +1883,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber AVEDEV(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(N);
@@ -1807,7 +1911,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber DEVSQ(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(N);
@@ -1836,7 +1940,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FORCAST(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             double sum = 0;
@@ -1866,7 +1970,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber SLOPE(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             double averagex = (N - 1) / (double)2;
@@ -1898,7 +2002,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber STD(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(N);
@@ -1926,7 +2030,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber STDP(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(N);
@@ -1954,7 +2058,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber VAR(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(N);
@@ -1986,7 +2090,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber VARP(TdxNumber X, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             List<double> temp = new List<double>(N);
@@ -2017,7 +2121,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber VALUEWHEN(TdxNumber X, double Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length) { array[startIndex] = double.NaN; startIndex++; }
             double last = -1;
@@ -2059,7 +2163,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber VALUEWHEN(TdxNumber X, TdxNumber Y)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             double last = -1;
@@ -2103,7 +2207,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IF(TdxNumber X, TdxNumber Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i)) {
                     array[i] = Y[i];
@@ -2145,7 +2249,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IF(TdxNumber X, TdxNumber Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i)) {
                     array[i] = Y[i];
@@ -2187,7 +2291,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IF(TdxNumber X, double Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i)) {
                     array[i] = Y;
@@ -2229,7 +2333,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IF(TdxNumber X, double Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i)) {
                     array[i] = Y;
@@ -2271,7 +2375,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IFN(TdxNumber X, TdxNumber Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i) == false) {
                     array[i] = Y[i];
@@ -2313,7 +2417,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IFN(TdxNumber X, TdxNumber Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i) == false) {
                     array[i] = Y[i];
@@ -2355,7 +2459,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IFN(TdxNumber X, double Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i) == false) {
                     array[i] = Y;
@@ -2397,7 +2501,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IFN(TdxNumber X, double Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
                 if (X.GetBoolean(i) == false) {
                     array[i] = Y;
@@ -2440,7 +2544,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber RANGE(TdxNumber X, TdxNumber Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex]) && double.IsNaN(Z[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2463,7 +2567,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber RANGE(TdxNumber X, TdxNumber Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2486,7 +2590,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber RANGE(TdxNumber X, double Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Z[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2509,7 +2613,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber RANGE(TdxNumber X, double Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2533,7 +2637,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BETWEEN(TdxNumber X, TdxNumber Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex]) && double.IsNaN(Z[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2559,7 +2663,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BETWEEN(TdxNumber X, TdxNumber Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2585,7 +2689,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BETWEEN(TdxNumber X, double Y, TdxNumber Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Z[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2611,7 +2715,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber BETWEEN(TdxNumber X, double Y, double Z)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2636,7 +2740,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber SMA(TdxNumber X, TdxNumber N, TdxNumber M)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2658,7 +2762,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber SMA(TdxNumber X, TdxNumber N, double M)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2680,7 +2784,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber SMA(TdxNumber X, double N, TdxNumber M)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2702,7 +2806,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber SMA(TdxNumber X, double N, double M)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2724,7 +2828,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber TMA(TdxNumber X, TdxNumber A, TdxNumber B)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2746,7 +2850,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber TMA(TdxNumber X, TdxNumber A, double B)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2768,7 +2872,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber TMA(TdxNumber X, double A, TdxNumber B)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2792,7 +2896,7 @@ namespace ToolGood.TdxFormula
         {
             if (A >= 1) { throw new Exception("Function TMA parameter A is error."); }
             if (B >= 1) { throw new Exception("Function TMA parameter B is error."); }
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2814,7 +2918,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LONGCROSS(TdxNumber X, TdxNumber Y, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2843,7 +2947,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LONGCROSS(TdxNumber X, double Y, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2872,7 +2976,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LONGCROSS(double X, TdxNumber Y, int N)
         {
-            var array = Y.CreateArray();
+            var array = new double[Y.Length];
             var startIndex = 0;
             while (startIndex < Y.Length && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2903,7 +3007,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber NDAY(TdxNumber X, TdxNumber Y, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2937,7 +3041,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber NDAY(TdxNumber X, double Y, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -2971,7 +3075,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber NDAY(double X, TdxNumber Y, int N)
         {
-            var array = Y.CreateArray();
+            var array = new double[Y.Length];
             var startIndex = 0;
             while (startIndex < Y.Length && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -3007,7 +3111,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber EXISTR(TdxNumber X, int N, int M)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             if (M > N) {
                 (M, N) = (N, M);
             }
@@ -3063,7 +3167,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber LAST(TdxNumber X, int N, int M)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             if (M > N) {
                 (M, N) = (N, M);
             }
@@ -3117,7 +3221,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber COVAR(TdxNumber X, TdxNumber Y, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -3154,7 +3258,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber RELATE(TdxNumber X, TdxNumber Y, int N)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex]) && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -3198,7 +3302,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FINDHIGH(TdxNumber X, int N, int M, int T)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -3231,7 +3335,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FINDLOW(TdxNumber X, int N, int M, int T)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
 
@@ -3264,7 +3368,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FINDHIGHBARS(TdxNumber X, int N, int M, int T)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             var temp = new List<double>(array.Length);
@@ -3296,7 +3400,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber FINDLOWBARS(TdxNumber X, int N, int M, int T)
         {
-            var array = X.CreateArray();
+            var array = new double[X.Length];
             var startIndex = 0;
             while (startIndex < X.Length && double.IsNaN(X[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
             var temp = new List<double>(array.Length);

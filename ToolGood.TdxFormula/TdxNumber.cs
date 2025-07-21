@@ -689,6 +689,7 @@ namespace ToolGood.TdxFormula
         {
             bool[] temp = new bool[a.length];
             for (int i = 0; i < a.length; i++) {
+
                 temp[i] = a[i] > b;
             }
             return temp;
@@ -1143,12 +1144,7 @@ namespace ToolGood.TdxFormula
         {
             return vals[i] != 0;
         }
-
-        [System.Diagnostics.DebuggerNonUserCode]
-        internal double[] CreateArray()
-        {
-            return new double[length];
-        }
+  
         /// <summary>
         /// ToString
         /// </summary>
