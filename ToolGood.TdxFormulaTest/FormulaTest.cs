@@ -276,6 +276,7 @@ namespace ToolGood.TdxFormulaTest
                 } else {
                     Assert.AreEqual(TEST[i], data[i].Value, 0.001);
                 }
+
             }
         }
         [Test]
@@ -1101,7 +1102,7 @@ namespace ToolGood.TdxFormulaTest
                 Assert.AreEqual(TEST[i], data[i].Value, 0.001);
             }
         }
-    
+
         [Test]
         public void COVAR_Test()
         {
@@ -1110,12 +1111,12 @@ namespace ToolGood.TdxFormulaTest
             TdxNumber C = data.Select(q => q.CLOSE).ToArray();
             TdxNumber O = data.Select(q => q.OPEN).ToArray();
             TdxNumber H = data.Select(q => q.HIGH).ToArray();
-            var TEST = COVAR(C,O, 5);
+            var TEST = COVAR(C, O, 5);
 
             for (int i = 20; i < TEST.Length; i++) {
                 Assert.AreEqual(TEST[i], data[i].Value, 0.001);
             }
-         
+
         }
         [Test]
         public void RELATE_Test()

@@ -999,6 +999,11 @@ namespace ToolGood.TdxFormula
                     }
                 }
             }
+            for (int i = 0; i < array.Length; i++) {
+                if (array[i]==-1) {
+                    array[i] = double.NaN;
+                }
+            }
             return new TdxNumber(array);
         }
         /// <summary>
