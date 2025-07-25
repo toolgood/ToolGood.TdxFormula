@@ -18,7 +18,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Product>ToolGood.TdxFormula</Product>
 		<SignAssembly>True</SignAssembly>
-		<Version>1.0.1.2</Version>
+		<Version>1.1.0.0</Version>
 		<DelaySign>false</DelaySign>
 		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ToolGood.TdxFormula.xml</DocumentationFile>
 		<Nullable>disable</Nullable>

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace ToolGood.TdxFormula
 {
     /// <summary>
-    /// tdx 数学类
+    /// 数学类
     /// </summary>
-    public static class TdxMath
+    public static partial class TdxMath
     {
         /// <summary>
         /// 求逻辑非.
@@ -536,7 +536,7 @@ namespace ToolGood.TdxFormula
         /// </summary>
         /// <param name="X"></param>
         /// <returns></returns>
-        public static TdxNumber BARSLAST(bool[] X)
+        public static TdxNumber BARSLAST(TdxBoolean X)
         {
             var array = new double[X.Length];
             int count = 0;
@@ -578,7 +578,7 @@ namespace ToolGood.TdxFormula
         /// </summary>
         /// <param name="X"></param>
         /// <returns></returns>
-        public static TdxNumber BARSLASTCOUNT(bool[] X)
+        public static TdxNumber BARSLASTCOUNT(TdxBoolean X)
         {
             var array = new double[X.Length];
             int count = 0;
@@ -644,7 +644,7 @@ namespace ToolGood.TdxFormula
         /// </summary>
         /// <param name="X"></param>
         /// <returns></returns>
-        public static TdxNumber BARSSINCE(bool[] X)
+        public static TdxNumber BARSSINCE(TdxBoolean X)
         {
             var array = new double[X.Length];
             int count = -1;
@@ -716,7 +716,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="Xs"></param>
         /// <returns></returns>
-        public static bool[] AND(TdxNumber X, params TdxNumber[] Xs)
+        public static TdxBoolean AND(TdxNumber X, params TdxNumber[] Xs)
         {
             var array = new bool[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -730,7 +730,7 @@ namespace ToolGood.TdxFormula
                 }
                 array[i] = b;
             }
-            return array;
+            return new TdxBoolean(array);
         }
         /// <summary>
         /// 并且
@@ -738,7 +738,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="Xs"></param>
         /// <returns></returns>
-        public static bool[] AND(TdxNumber X, params bool[][] Xs)
+        public static TdxBoolean AND(TdxNumber X, params TdxBoolean[] Xs)
         {
             var array = new bool[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -752,7 +752,29 @@ namespace ToolGood.TdxFormula
                 }
                 array[i] = b;
             }
-            return array;
+            return new TdxBoolean(array);
+        }
+        /// <summary>
+        /// 并且
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Xs"></param>
+        /// <returns></returns>
+        public static TdxBoolean AND(TdxNumber X, params bool[][] Xs)
+        {
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i) == false) { continue; }
+                bool b = true;
+                for (int j = 0; j < Xs.Length; j++) {
+                    if (Xs[j][i] == false) {
+                        b = false;
+                        break;
+                    }
+                }
+                array[i] = b;
+            }
+            return new TdxBoolean(array);
         }
 
         /// <summary>
@@ -761,7 +783,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="Xs"></param>
         /// <returns></returns>
-        public static bool[] OR(TdxNumber X, params TdxNumber[] Xs)
+        public static TdxBoolean OR(TdxNumber X, params TdxNumber[] Xs)
         {
             var array = new bool[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -778,7 +800,7 @@ namespace ToolGood.TdxFormula
                 }
                 array[i] = b;
             }
-            return array;
+            return new TdxBoolean(array);
         }
 
         /// <summary>
@@ -787,7 +809,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="Xs"></param>
         /// <returns></returns>
-        public static bool[] OR(TdxNumber X, params bool[][] Xs)
+        public static TdxBoolean OR(TdxNumber X, params TdxBoolean[] Xs)
         {
             var array = new bool[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -804,7 +826,33 @@ namespace ToolGood.TdxFormula
                 }
                 array[i] = b;
             }
-            return array;
+            return new TdxBoolean(array);
+        }
+
+        /// <summary>
+        /// 或者
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Xs"></param>
+        /// <returns></returns>
+        public static TdxBoolean OR(TdxNumber X, params bool[][] Xs)
+        {
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X.GetBoolean(i)) {
+                    array[i] = true;
+                    continue;
+                }
+                bool b = false;
+                for (int j = 0; j < Xs.Length; j++) {
+                    if (Xs[j][i]) {
+                        b = true;
+                        break;
+                    }
+                }
+                array[i] = b;
+            }
+            return new TdxBoolean(array);
         }
 
 
@@ -989,7 +1037,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber BARSSINCEN(bool[] X, int N)
+        public static TdxNumber BARSSINCEN(TdxBoolean X, int N)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -1049,7 +1097,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber COUNT(bool[] X, int N)
+        public static TdxNumber COUNT(TdxBoolean X, int N)
         {
             var array = new double[X.Length];
             int index = 0;
@@ -1553,7 +1601,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber FILTER(bool[] X, int N)
+        public static TdxNumber FILTER(TdxBoolean X, int N)
         {
             var array = new double[X.Length];
             var skipCount = 0;
@@ -1607,7 +1655,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber FILTERX(bool[] X, int N)
+        public static TdxNumber FILTERX(TdxBoolean X, int N)
         {
             var array = new double[X.Length];
             var skipCount = 0;
@@ -1821,7 +1869,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber EXIST(bool[] X, int N)
+        public static TdxNumber EXIST(TdxBoolean X, int N)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -1874,7 +1922,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="N"></param>
         /// <returns></returns>
-        public static TdxNumber EVERY(bool[] X, int N)
+        public static TdxNumber EVERY(TdxBoolean X, int N)
         {
             var array = new double[X.Length];
             var temp = 0;
@@ -2162,7 +2210,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public static TdxNumber VALUEWHEN(bool[] X, double Y)
+        public static TdxNumber VALUEWHEN(TdxBoolean X, double Y)
         {
             var array = new double[X.Length];
             var startIndex = 0;
@@ -2204,7 +2252,7 @@ namespace ToolGood.TdxFormula
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public static TdxNumber VALUEWHEN(bool[] X, TdxNumber Y)
+        public static TdxNumber VALUEWHEN(TdxBoolean X, TdxNumber Y)
         {
             var array = new double[X.Length];
             var startIndex = 0;
@@ -2212,6 +2260,27 @@ namespace ToolGood.TdxFormula
             double last = -1;
             for (int i = startIndex; i < array.Length; i++) {
                 if (X[i]) {
+                    last = Y[i];
+                }
+                array[i] = last;
+            }
+            return new TdxNumber(array);
+        }
+        /// <summary>
+        /// VALUEWHEN(COND,X) 
+        /// 当COND条件成立时,取X的当前值,否则取VALUEWHEN的上个值.
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <returns></returns>
+        public static TdxNumber VALUEWHEN(bool X, TdxNumber Y)
+        {
+            var array = new double[Y.Length];
+            var startIndex = 0;
+            while (startIndex < Y.Length && double.IsNaN(Y[startIndex])) { array[startIndex] = double.NaN; startIndex++; }
+            double last = -1;
+            for (int i = startIndex; i < array.Length; i++) {
+                if (X) {
                     last = Y[i];
                 }
                 array[i] = last;
@@ -2248,7 +2317,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IF(bool[] X, TdxNumber Y, TdxNumber Z)
+        public static TdxNumber IF(TdxBoolean X, TdxNumber Y, TdxNumber Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2259,6 +2328,19 @@ namespace ToolGood.TdxFormula
                 }
             }
             return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(bool X, TdxNumber Y, TdxNumber Z)
+        {
+            return X ? Y : Z;
         }
         /// <summary>
         /// 根据条件求不同的值.
@@ -2290,7 +2372,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IF(bool[] X, TdxNumber Y, double Z)
+        public static TdxNumber IF(TdxBoolean X, TdxNumber Y, double Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2301,6 +2383,20 @@ namespace ToolGood.TdxFormula
                 }
             }
             return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(bool X, TdxNumber Y, double Z)
+        {
+            if (X) return Y;
+            return new TdxNumber(Z, Y.Length);
         }
         /// <summary>
         /// 根据条件求不同的值.
@@ -2332,7 +2428,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IF(bool[] X, double Y, TdxNumber Z)
+        public static TdxNumber IF(TdxBoolean X, double Y, TdxNumber Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2343,6 +2439,20 @@ namespace ToolGood.TdxFormula
                 }
             }
             return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值.
+        /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
+        /// 例如: IF(CLOSE>OPEN, HIGH, LOW)表示该周期收阳则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IF(bool X, double Y, TdxNumber Z)
+        {
+            if (X == false) return Z;
+            return new TdxNumber(Y, Z.Length);
         }
         /// <summary>
         /// 根据条件求不同的值.
@@ -2374,7 +2484,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IF(bool[] X, double Y, double Z)
+        public static TdxNumber IF(TdxBoolean X, double Y, double Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2416,7 +2526,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IFN(bool[] X, TdxNumber Y, TdxNumber Z)
+        public static TdxNumber IFN(TdxBoolean X, TdxNumber Y, TdxNumber Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2427,6 +2537,19 @@ namespace ToolGood.TdxFormula
                 }
             }
             return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(bool X, TdxNumber Y, TdxNumber Z)
+        {
+            return X == false ? Y : Z;
         }
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
@@ -2458,7 +2581,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IFN(bool[] X, TdxNumber Y, double Z)
+        public static TdxNumber IFN(TdxBoolean X, TdxNumber Y, double Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2470,6 +2593,21 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(bool X, TdxNumber Y, double Z)
+        {
+            if (X==false) return Y;
+            return new TdxNumber(Z, Y.Length);
+        }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2500,7 +2638,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IFN(bool[] X, double Y, TdxNumber Z)
+        public static TdxNumber IFN(TdxBoolean X, double Y, TdxNumber Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -2511,6 +2649,20 @@ namespace ToolGood.TdxFormula
                 }
             }
             return new TdxNumber(array);
+        }
+        /// <summary>
+        /// 根据条件求不同的值,同IF判断相反.
+        /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
+        /// 例如: IFN(CLOSE>OPEN, HIGH, LOW)表示该周期收阴则返回最高值,否则返回最低值
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="Z"></param>
+        /// <returns></returns>
+        public static TdxNumber IFN(bool X, double Y, TdxNumber Z)
+        {
+            if (X) return Z;
+            return new TdxNumber(Y,Z.Length);
         }
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
@@ -2542,7 +2694,7 @@ namespace ToolGood.TdxFormula
         /// <param name="Y"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static TdxNumber IFN(bool[] X, double Y, double Z)
+        public static TdxNumber IFN(TdxBoolean X, double Y, double Z)
         {
             var array = new double[X.Length];
             for (int i = 0; i < array.Length; i++) {
@@ -3159,7 +3311,7 @@ namespace ToolGood.TdxFormula
         /// <param name="N"></param>
         /// <param name="M"></param>
         /// <returns></returns>
-        public static TdxNumber EXISTR(bool[] X, int N, int M)
+        public static TdxNumber EXISTR(TdxBoolean X, int N, int M)
         {
             var array = new double[X.Length];
             if (M > N) {
@@ -3215,7 +3367,7 @@ namespace ToolGood.TdxFormula
         /// <param name="N"></param>
         /// <param name="M"></param>
         /// <returns></returns>
-        public static TdxNumber LAST(bool[] X, int N, int M)
+        public static TdxNumber LAST(TdxBoolean X, int N, int M)
         {
             var array = new double[X.Length];
             if (M > N) {
@@ -3445,7 +3597,6 @@ namespace ToolGood.TdxFormula
 
         #region 未来函数
 
-
         /// <summary>
         /// 属于未来函数,之字转向.
         /// 用法: ZIGA(K, X),当价格变化超过X时转向,K表示0:开盘价,1:最高价,2:最低价,3:收盘价,其余:数组信息
@@ -3606,6 +3757,7 @@ namespace ToolGood.TdxFormula
         }
 
         #endregion
+
 
         #region private
         static double LinearRegressionCoefficient(List<double> parray, double averagex, double denominator)
