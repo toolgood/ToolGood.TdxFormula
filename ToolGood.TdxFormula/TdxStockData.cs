@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ToolGood.TdxFormula
@@ -63,12 +64,11 @@ namespace ToolGood.TdxFormula
         /// </summary>
         public TdxStockData()
         { }
-
         /// <summary>
-        /// 构造函数
+        /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>
         /// <param name="datas">K线数据</param>
-        public TdxStockData(IStockData[] datas)
+        public TdxStockData(IEnumerable<IStockData> datas)
         {
             Date = datas.Select(x => x.Date).ToArray();
             Open = datas.Select(x => x.Open).ToArray();
@@ -82,11 +82,11 @@ namespace ToolGood.TdxFormula
         }
 
         /// <summary>
-        /// 构造函数
+        /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>
         /// <param name="datas">K线数据</param>
         /// <param name="lastDays">K线长度</param>
-        public TdxStockData(IStockData[] datas, int lastDays = 500)
+        public TdxStockData(IEnumerable<IStockData> datas, int lastDays)
         {
             var temp = datas.TakeLast(lastDays).ToList();
             Date = temp.Select(x => x.Date).ToArray();
@@ -101,11 +101,11 @@ namespace ToolGood.TdxFormula
         }
 
         /// <summary>
-        /// 构造函数
+        /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>
         /// <param name="datas">K线数据</param>
         /// <param name="endDate">结束日期</param>
-        public TdxStockData(IStockData[] datas, DateTime endDate)
+        public TdxStockData(IEnumerable<IStockData> datas, DateTime endDate)
         {
             var temp = datas.Where(q => q.Date <= endDate).ToList();
 
@@ -121,12 +121,12 @@ namespace ToolGood.TdxFormula
         }
 
         /// <summary>
-        /// 构造函数
+        /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>
         /// <param name="datas">K线数据</param>
         /// <param name="endDate">结束日期</param>
         /// <param name="lastDays">K线长度</param>
-        public TdxStockData(IStockData[] datas, DateTime endDate, int lastDays = 500)
+        public TdxStockData(IEnumerable<IStockData> datas, DateTime endDate, int lastDays)
         {
             var temp = datas.Where(q => q.Date <= endDate).TakeLast(lastDays).ToList();
             Date = temp.Select(x => x.Date).ToArray();
@@ -141,12 +141,12 @@ namespace ToolGood.TdxFormula
         }
 
         /// <summary>
-        /// 构造函数
+        /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>
         /// <param name="datas">K线数据</param>
         /// <param name="startDate">开始日期</param>
         /// <param name="endDate">结束日期</param>
-        public TdxStockData(IStockData[] datas, DateTime startDate, DateTime endDate)
+        public TdxStockData(IEnumerable<IStockData> datas, DateTime startDate, DateTime endDate)
         {
             var temp = datas.Where(q => q.Date >= startDate && q.Date <= endDate).ToList();
 
@@ -162,13 +162,13 @@ namespace ToolGood.TdxFormula
         }
 
         /// <summary>
-        /// 构造函数
+        /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>
         /// <param name="datas">K线数据</param>
         /// <param name="startDate">开始日期</param>
         /// <param name="endDate">结束日期</param>
         /// <param name="frontDays">前置数量</param>
-        public TdxStockData(IStockData[] datas, DateTime startDate, DateTime endDate, int frontDays = 200)
+        public TdxStockData(IEnumerable<IStockData> datas, DateTime startDate, DateTime endDate, int frontDays)
         {
             var temp = datas.Where(q => q.Date < startDate).TakeLast(frontDays).ToList();
             var temp2 = datas.Where(q => q.Date >= startDate && q.Date <= endDate).ToList();
