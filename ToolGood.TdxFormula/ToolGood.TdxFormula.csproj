@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Description>ToolGood.TdxFormula </Description>
+		<Description>通达信函数库 麦语言 C#版</Description>
 		<Copyright>Copyright 2025 ToolGood</Copyright>
 		<AssemblyTitle>ToolGood.TdxFormula</AssemblyTitle>
 		<Authors>ToolGood</Authors>

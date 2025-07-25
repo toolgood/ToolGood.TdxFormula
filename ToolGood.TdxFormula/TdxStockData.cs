@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToolGood.TdxFormula
 {
@@ -15,38 +12,47 @@ namespace ToolGood.TdxFormula
         /// 长度
         /// </summary>
         public int Length => Date.Length;
+
         /// <summary>
         /// 日期
         /// </summary>
         public DateTime[] Date { get; set; }
+
         /// <summary>
         /// 开盘价（元）
         /// </summary>
         public TdxNumber Open { get; set; }
+
         /// <summary>
         /// 最高价（元）
         /// </summary>
         public TdxNumber High { get; set; }
+
         /// <summary>
         /// 最低价（元）
         /// </summary>
         public TdxNumber Low { get; set; }
+
         /// <summary>
         /// 收盘价（元）
         /// </summary>
         public TdxNumber Close { get; set; }
+
         /// <summary>
         /// 复权后的均价
         /// </summary>
         public TdxNumber Average { get; set; }
+
         /// <summary>
         /// 成交量（手、100股）
         /// </summary>
         public TdxNumber Volume { get; set; }
+
         /// <summary>
         /// 成交额（万元）
         /// </summary>
         public TdxNumber Amount { get; set; }
+
         /// <summary>
         /// 流通股
         /// </summary>
@@ -55,7 +61,9 @@ namespace ToolGood.TdxFormula
         /// <summary>
         /// 构造函数
         /// </summary>
-        public TdxStockData() { }
+        public TdxStockData()
+        { }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -72,6 +80,7 @@ namespace ToolGood.TdxFormula
             Amount = datas.Select(x => (double)x.Amount).ToArray();
             Capital = datas.Select(x => (double)x.Capital).ToArray();
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -90,6 +99,7 @@ namespace ToolGood.TdxFormula
             Amount = temp.Select(x => (double)x.Amount).ToArray();
             Capital = temp.Select(x => (double)x.Capital).ToArray();
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -109,6 +119,7 @@ namespace ToolGood.TdxFormula
             Amount = temp.Select(x => (double)x.Amount).ToArray();
             Capital = temp.Select(x => (double)x.Capital).ToArray();
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -128,6 +139,7 @@ namespace ToolGood.TdxFormula
             Amount = temp.Select(x => (double)x.Amount).ToArray();
             Capital = temp.Select(x => (double)x.Capital).ToArray();
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -148,6 +160,7 @@ namespace ToolGood.TdxFormula
             Amount = temp.Select(x => (double)x.Amount).ToArray();
             Capital = temp.Select(x => (double)x.Capital).ToArray();
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>

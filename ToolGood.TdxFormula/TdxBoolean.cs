@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToolGood.TdxFormula
 {
@@ -15,34 +12,37 @@ namespace ToolGood.TdxFormula
         /// 长度
         /// </summary>
         public int Length { get; private set; }
+
         /// <summary>
         /// 值
         /// </summary>
         public bool[] Values { get; private set; }
+
         /// <summary>
         /// 最后的值
         /// </summary>
         public bool LastValue { get { return Values[Length - 1]; } }
 
-
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">值</param>
         public TdxBoolean(bool[] value)
         {
             Values = value;
             Length = value.Length;
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">值</param>
         public TdxBoolean(List<bool> value)
         {
             Values = value.ToArray();
             Length = value.Count;
         }
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -56,6 +56,7 @@ namespace ToolGood.TdxFormula
         }
 
         #region operator
+
         /// <summary>
         /// 隐性转换
         /// </summary>
@@ -64,6 +65,7 @@ namespace ToolGood.TdxFormula
         {
             return new TdxBoolean(obj);
         }
+
         /// <summary>
         /// 隐性转换
         /// </summary>
@@ -72,6 +74,7 @@ namespace ToolGood.TdxFormula
         {
             return obj.Values;
         }
+
         /// <summary>
         /// 隐性转换
         /// </summary>
@@ -80,9 +83,11 @@ namespace ToolGood.TdxFormula
         {
             return new TdxBoolean(obj);
         }
-        #endregion
+
+        #endregion operator
 
         #region this[int i]
+
         /// <summary>
         /// this[i]
         /// </summary>
@@ -95,9 +100,10 @@ namespace ToolGood.TdxFormula
             set { Values[i] = value; }
         }
 
-        #endregion
+        #endregion this[int i]
 
         #region operator &
+
         /// <summary>
         /// operator &amp;
         /// </summary>
@@ -114,6 +120,7 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+
         /// <summary>
         /// operator &amp;
         /// </summary>
@@ -130,6 +137,7 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+
         /// <summary>
         /// operator &amp;
         /// </summary>
@@ -146,6 +154,7 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+
         /// <summary>
         /// operator &amp;
         /// </summary>
@@ -177,9 +186,11 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
-        #endregion
+
+        #endregion operator &
 
         #region operator |
+
         /// <summary>
         /// operator |
         /// </summary>
@@ -196,6 +207,7 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+
         /// <summary>
         /// operator |
         /// </summary>
@@ -212,6 +224,7 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+
         /// <summary>
         /// operator |
         /// </summary>
@@ -228,6 +241,7 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
+
         /// <summary>
         /// operator |
         /// </summary>
@@ -259,9 +273,11 @@ namespace ToolGood.TdxFormula
             }
             return temp;
         }
-        #endregion
+
+        #endregion operator |
 
         #region operator <
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -278,6 +294,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -293,6 +310,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -309,6 +327,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -341,6 +360,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -357,6 +377,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -373,6 +394,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;
         /// </summary>
@@ -404,9 +426,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
-        #endregion
+
+        #endregion operator <
 
         #region operator >
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -423,6 +447,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -438,6 +463,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -454,6 +480,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -486,6 +513,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -502,6 +530,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -518,6 +547,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >
         /// </summary>
@@ -549,9 +579,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
-        #endregion
+
+        #endregion operator >
 
         #region operator <=
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -568,6 +600,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -583,6 +616,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -599,6 +633,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -631,6 +666,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -647,6 +683,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -663,6 +700,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator &amp;lt;=
         /// </summary>
@@ -694,9 +732,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
-        #endregion
+
+        #endregion operator <=
 
         #region operator >=
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -713,6 +753,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -728,6 +769,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -744,6 +786,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -772,10 +815,11 @@ namespace ToolGood.TdxFormula
             if (a.Length >= b.Length) throw new Exception();
             bool[] temp = new bool[a.Length];
             for (int i = 0; i < a.Length; i++) {
-                temp[i] = (a[i]?1:0) >= (b[i] ? 1 : 0);
+                temp[i] = (a[i] ? 1 : 0) >= (b[i] ? 1 : 0);
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -792,6 +836,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -808,6 +853,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator >=
         /// </summary>
@@ -839,9 +885,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
-        #endregion
+
+        #endregion operator >=
 
         #region operator ==
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -858,6 +906,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -873,6 +922,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -889,6 +939,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -921,6 +972,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -937,6 +989,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -953,6 +1006,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator ==
         /// </summary>
@@ -984,9 +1038,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
-        #endregion
+
+        #endregion operator ==
 
         #region operator !=
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1003,6 +1059,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1018,6 +1075,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1034,6 +1092,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1066,6 +1125,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1082,6 +1142,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1098,6 +1159,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
+
         /// <summary>
         /// operator !=
         /// </summary>
@@ -1129,9 +1191,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(temp);
         }
-        #endregion
+
+        #endregion operator !=
 
         #region operator +
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1148,6 +1212,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1164,6 +1229,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1180,6 +1246,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1196,6 +1263,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1212,6 +1280,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1227,6 +1296,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1242,6 +1312,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1257,6 +1328,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator +
         /// </summary>
@@ -1272,9 +1344,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
-        #endregion
+
+        #endregion operator +
 
         #region operator -
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1291,6 +1365,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1307,6 +1382,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1323,6 +1399,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1339,6 +1416,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1355,6 +1433,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1370,6 +1449,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1385,6 +1465,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1400,6 +1481,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator -
         /// </summary>
@@ -1415,9 +1497,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
-        #endregion
+
+        #endregion operator -
 
         #region operator *
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1434,6 +1518,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1450,6 +1535,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1466,6 +1552,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1482,6 +1569,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1498,6 +1586,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1513,6 +1602,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1528,6 +1618,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1543,6 +1634,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1558,9 +1650,11 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
-        #endregion
+
+        #endregion operator *
 
         #region operator /
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1577,6 +1671,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(temp);
         }
+
         /// <summary>
         /// operator *
         /// </summary>
@@ -1593,9 +1688,10 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(temp);
         }
 
-        #endregion
+        #endregion operator /
 
         #region override
+
         /// <summary>
         /// ToString
         /// </summary>
@@ -1616,6 +1712,7 @@ namespace ToolGood.TdxFormula
                    Length == number.Length &&
                    EqualityComparer<bool[]>.Default.Equals(Values, number.Values);
         }
+
         /// <summary>
         /// GetHashCode
         /// </summary>
@@ -1624,6 +1721,7 @@ namespace ToolGood.TdxFormula
         {
             return HashCode.Combine(Length, Values);
         }
-        #endregion
+
+        #endregion override
     }
 }

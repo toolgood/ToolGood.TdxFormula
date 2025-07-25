@@ -11,6 +11,7 @@ namespace ToolGood.TdxFormula
         /// 日期
         /// </summary>
         public DateTime Date { get; set; }
+
         /// <summary>
         /// 开盘价（元）
         /// </summary>
@@ -30,10 +31,12 @@ namespace ToolGood.TdxFormula
         /// 收盘价（元）
         /// </summary>
         public double Close { get; set; }
+
         /// <summary>
         /// 复权后的均价
         /// </summary>
         public double Average { get; set; }
+
         /// <summary>
         /// 成交量（手、100股）
         /// </summary>
@@ -43,10 +46,10 @@ namespace ToolGood.TdxFormula
         /// 成交额（万元）
         /// </summary>
         public double Amount { get; set; }
+
         /// <summary>
         /// 流通股
         /// </summary>
         public double Capital { get; set; }
     }
-
 }

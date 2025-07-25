@@ -1,10 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ToolGood.TdxFormula
 {
@@ -30,6 +26,7 @@ namespace ToolGood.TdxFormula
         }
 
         #region Math
+
         /// <summary>
         /// 反余弦值.
         /// 用法: ACOS(X)返回X的反余弦值
@@ -40,6 +37,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Acos);
         }
+
         /// <summary>
         /// 反正弦值.
         /// 用法: ASIN(X)返回X的反正弦值
@@ -50,6 +48,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Asin);
         }
+
         /// <summary>
         /// 反正切值.
         /// 用法: ATAN(X)返回X的反正切值
@@ -60,6 +59,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Atan);
         }
+
         /// <summary>
         /// 余弦值.
         /// 用法: COS(X)返回X的余弦值
@@ -70,6 +70,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Cos);
         }
+
         /// <summary>
         /// 正弦值.
         /// 用法: SIN(X)返回X的正弦值
@@ -80,6 +81,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Sin);
         }
+
         /// <summary>
         /// 正切值.
         /// 用法: TAN(X)返回X的正切值
@@ -90,6 +92,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Tan);
         }
+
         /// <summary>
         /// 指数.
         /// 用法: EXP(X)为e的X次幂
@@ -101,6 +104,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Exp);
         }
+
         /// <summary>
         /// 求自然对数.
         /// 用法: LN(X)以e为底的对数
@@ -112,6 +116,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Log);
         }
+
         /// <summary>
         /// 求N为底的对数.
         /// 用法: LOG(X,N)取得X的对数
@@ -123,6 +128,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Log, 10.0);
         }
+
         /// <summary>
         /// 求N为底的对数.
         /// 用法: LOG(X,N)取得X的对数
@@ -135,6 +141,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Log, num);
         }
+
         /// <summary>
         /// 求N为底的对数.
         /// 用法: LOG(X,N)取得X的对数
@@ -147,6 +154,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2((m, n) => { return Math.Log(m, n); }, num);
         }
+
         /// <summary>
         /// 开平方.
         /// 用法: SQRT(X)为X的平方根
@@ -158,6 +166,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Sqrt);
         }
+
         /// <summary>
         /// 求绝对值.
         /// 用法: ABS(X)返回X的绝对值
@@ -169,6 +178,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Abs);
         }
+
         /// <summary>
         /// 向上舍入.
         /// 用法: CEILING(A)返回沿A数值增大方向最接近的整数
@@ -180,6 +190,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Ceiling);
         }
+
         /// <summary>
         /// 向下舍入.
         /// 用法: FLOOR(A)返回沿A数值减小方向最接近的整数
@@ -191,6 +202,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun(Math.Floor);
         }
+
         /// <summary>
         /// 取整.
         /// 用法: INTPART(A)返回沿A绝对值减小方向最接近的整数
@@ -202,6 +214,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun((m) => { return (int)m; });
         }
+
         /// <summary>
         /// 小数部分.
         /// 用法: FRACPART(X),返回X的小数部分
@@ -212,6 +225,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun((m) => { return m - (int)m; });
         }
+
         /// <summary>
         /// 四舍五入.
         /// 用法: ROUND(X,N),返回X四舍五入到个位的数值
@@ -222,6 +236,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun((m) => { return Math.Round(m, MidpointRounding.AwayFromZero); });
         }
+
         /// <summary>
         /// 四舍五入.
         /// 用法: ROUND(X,N),返回X四舍五入到个位的数值
@@ -233,6 +248,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2((m, n) => { return Math.Round(m, (int)n, MidpointRounding.AwayFromZero); }, num);
         }
+
         /// <summary>
         /// 四舍五入.
         /// 用法: ROUND(X,N),返回X四舍五入到个位的数值
@@ -244,6 +260,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2((m, n) => { return Math.Round(m, (int)n, MidpointRounding.AwayFromZero); }, num);
         }
+
         /// <summary>
         /// 取符号.
         /// 用法: SIGN(X),返回X的符号.当X>0,X=0,X&lt;0分别返回1,0,-1
@@ -271,6 +288,7 @@ namespace ToolGood.TdxFormula
             }
             return array;
         }
+
         /// <summary>
         /// 取模.
         /// 用法: MOD(M, N),返回M关于N的模(M除以N的余数)
@@ -287,6 +305,7 @@ namespace ToolGood.TdxFormula
             }
             return array;
         }
+
         /// <summary>
         /// 取模.
         /// 用法: MOD(M, N),返回M关于N的模(M除以N的余数)
@@ -316,6 +335,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Max, Y);
         }
+
         /// <summary>
         /// 求最大值.
         /// 用法: MAX(A, B)返回A和B中的较大值
@@ -328,6 +348,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Max, Y);
         }
+
         /// <summary>
         /// 求最大值.
         /// 用法: MAX(A, B)返回A和B中的较大值
@@ -353,6 +374,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Min, Y);
         }
+
         /// <summary>
         /// 求最小值.
         /// 用法: MIN(A, B)返回A和B中的较小值
@@ -365,6 +387,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2(Math.Min, Y);
         }
+
         /// <summary>
         /// 求最小值.
         /// 用法: MIN(A, B)返回A和B中的较小值
@@ -390,6 +413,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2((m, n) => { return Math.Pow(m, n); }, num);
         }
+
         /// <summary>
         /// 乘幂.
         /// 用法: POW(A, B)返回A的B次幂
@@ -402,6 +426,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun2((m, n) => { return Math.Pow(m, n); }, num);
         }
+
         /// <summary>
         /// 乘幂.
         /// 用法: POW(A, B)返回A的B次幂
@@ -471,7 +496,8 @@ namespace ToolGood.TdxFormula
             return array;
         }
 
-        #endregion
+        #endregion Math
+
         /// <summary>
         /// 求相反数.
         /// 用法: REVERSE(X)返回-X.
@@ -483,6 +509,7 @@ namespace ToolGood.TdxFormula
         {
             return X.RunFun((m) => { return -m; });
         }
+
         /// <summary>
         /// CONST(A):取A最后的值为常量.
         /// 用法: CONST(INDEXC)表示取指数现价
@@ -495,6 +522,7 @@ namespace ToolGood.TdxFormula
             Array.Fill(array, X[array.Length - 1]);
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 判断时否有效值
         /// </summary>
@@ -529,6 +557,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 上一次条件成立到当前的周期数.
         /// 用法: BARSLAST(X) :上一次X不为0到现在的周期数
@@ -550,6 +579,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 统计连续满足条件的周期数.
         /// 用法: BARSLASTCOUNT(X),统计连续满足X条件的周期数.
@@ -571,6 +601,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 统计连续满足条件的周期数.
         /// 用法: BARSLASTCOUNT(X),统计连续满足X条件的周期数.
@@ -592,6 +623,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 有效数据周期数.
         /// 用法: BARSCOUNT(X)第一个有效数据到当前的间隔周期数
@@ -610,6 +642,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 第一个条件成立到当前的周期数.
         /// 用法: BARSSINCE(X) :第一次X不为0到现在的周期数
@@ -637,6 +670,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 第一个条件成立到当前的周期数.
         /// 用法: BARSSINCE(X) :第一次X不为0到现在的周期数
@@ -664,6 +698,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 当前值是近多少周期内的最小值.
         /// 用法: LOWRANGE(X) :X是近多少周期内X的最小值
@@ -687,6 +722,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 当前值是近多少周期内的最大值.
         /// 用法: TOPRANGE(X) :X是近多少周期内X的最大值
@@ -710,6 +746,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 并且
         /// </summary>
@@ -732,6 +769,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(array);
         }
+
         /// <summary>
         /// 并且
         /// </summary>
@@ -754,6 +792,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxBoolean(array);
         }
+
         /// <summary>
         /// 并且
         /// </summary>
@@ -855,7 +894,6 @@ namespace ToolGood.TdxFormula
             return new TdxBoolean(array);
         }
 
-
         /// <summary>
         /// 引用若干周期前的数据.
         /// 用法: REF(X, A),引用A周期前的X值.A可以是变量.
@@ -874,6 +912,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 引用若干周期前的数据.
         /// 用法: REF(X, A),引用A周期前的X值.A可以是变量.
@@ -892,6 +931,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回涨停价
         /// 用法: ZTPRICE(REF(CLOSE,1),0.1):按10%计算得到在昨收盘基础上的涨停价(对于复权序列K线, 由于复权处理, 根据前一天的收盘价计算结果可能与涨停价不符)
@@ -908,6 +948,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回涨停价
         /// 用法: ZTPRICE(REF(CLOSE,1),0.1):按10%计算得到在昨收盘基础上的涨停价(对于复权序列K线, 由于复权处理, 根据前一天的收盘价计算结果可能与涨停价不符)
@@ -924,6 +965,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回跌停价
         /// 用法: DTPRICE(REF(CLOSE,1),0.1):按10%计算得到在昨收盘基础上的跌停价(对于复权序列K线, 由于复权处理, 根据前一天的收盘价计算结果可能与跌停价不符)
@@ -940,6 +982,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回跌停价
         /// 用法: DTPRICE(REF(CLOSE,1),0.1):按10%计算得到在昨收盘基础上的跌停价(对于复权序列K线, 由于复权处理, 根据前一天的收盘价计算结果可能与跌停价不符)
@@ -956,6 +999,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 两条线交叉.
         /// 用法: CROSS(A, B)表示当A从下方向上穿过B时返回1,否则返回0
@@ -978,6 +1022,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 两条线交叉.
         /// 用法: CROSS(A, B)表示当A从下方向上穿过B时返回1,否则返回0
@@ -1000,6 +1045,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// N周期内第一个条件成立到当前的周期数.
         /// 用法: BARSSINCEN(X, N) :N周期内第一次X不为0到现在的周期数,N为常量
@@ -1029,6 +1075,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// N周期内第一个条件成立到当前的周期数.
         /// 用法: BARSSINCEN(X, N) :N周期内第一次X不为0到现在的周期数,N为常量
@@ -1059,6 +1106,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 统计满足条件的周期数.
         /// 用法: COUNT(X, N),统计N周期中满足X条件的周期数,若N&lt;0则从第一个有效值开始.
@@ -1089,6 +1137,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 统计满足条件的周期数.
         /// 用法: COUNT(X, N),统计N周期中满足X条件的周期数,若N&lt;0则从第一个有效值开始.
@@ -1119,6 +1168,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求最高值.
         /// 用法: HHV(X, N),求N周期内X最高值,N=0则从第一个有效值开始.
@@ -1159,6 +1209,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求上一高点到当前的周期数.
         /// 用法: HHVBARS(X, N) :求N周期内X最高值到当前周期数,N=0表示从第一个有效值开始统计
@@ -1217,6 +1268,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求最低值.
         /// 用法: LLV(X, N),求N周期内X最低值,N=0则从第一个有效值开始.
@@ -1257,6 +1309,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求上一低点到当前的周期数.
         /// 用法: LLVBARS(X, N) :求N周期内X最低值到当前周期数,N=0表示从第一个有效值开始统计
@@ -1314,6 +1367,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求总和.
         /// 用法: SUM(X, N),统计N周期中X的总和,N=0则从第一个有效值开始.
@@ -1347,6 +1401,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 向前累加到指定值到现在的周期数.
         /// 用法: SUMBARS(X, A) :将X向前累加直到大于等于A,返回这个区间的周期数,若所有的数据都累加后还不能达到A,则返回此时前面的总周期数.
@@ -1372,6 +1427,7 @@ namespace ToolGood.TdxFormula
             array.Reverse();
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 向前累加到指定值到现在的周期数.
         /// 用法: SUMBARS(X, A) :将X向前累加直到大于等于A,返回这个区间的周期数,若所有的数据都累加后还不能达到A,则返回此时前面的总周期数.
@@ -1397,6 +1453,7 @@ namespace ToolGood.TdxFormula
             array.Reverse();
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回简单移动平均
         /// 用法: MA(X, N) :X的N日简单移动平均,算法(X1+X2+X3+...+Xn)/N,N支持变量
@@ -1423,6 +1480,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回指数移动平均
         /// 用法: EMA(X, N) :X的N日指数移动平均.算法:Y=(X*2+Y'*(N-1))/(N+1)
@@ -1445,6 +1503,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回平滑移动平均
         /// 用法: MEMA(X, N) :X的N日平滑移动平均,如Y=(X+Y'*(N-1))/N
@@ -1466,6 +1525,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求自适应均线值.
         /// 用法: AMA(X, A),A为自适应系数,必须小于1.
@@ -1489,6 +1549,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求动态移动平均.
         /// 用法: DMA(X, A),求X的动态移动平均.
@@ -1516,6 +1577,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求动态移动平均.
         /// 用法: DMA(X, A),求X的动态移动平均.
@@ -1543,6 +1605,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回加权移动平均
         /// 用法: WMA(X, N) :X的N日加权移动平均.算法:Yn=(1*X1+2*X2+...+n* Xn)/(1+2+...+n)
@@ -1566,6 +1629,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 过滤连续出现的信号.
         /// 用法: FILTER(X, N) :X满足条件后,将其后N周期内的数据置为0,N为常量.
@@ -1593,6 +1657,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 过滤连续出现的信号.
         /// 用法: FILTER(X, N) :X满足条件后,将其后N周期内的数据置为0,N为常量.
@@ -1620,6 +1685,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 反向过滤连续出现的信号.
         /// 用法: FILTERX(X, N) :X满足条件后,将其前N周期内的数据置为0,N为常量.
@@ -1647,6 +1713,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 反向过滤连续出现的信号.
         /// 用法: FILTERX(X, N) :X满足条件后,将其前N周期内的数据置为0,N为常量.
@@ -1674,6 +1741,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求高值名次.
         /// 用法: HOD(X, N) :求当前X数据是N周期内的第几个高值,N=0则从第一个有效值开始.
@@ -1710,6 +1778,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求低值名次.
         /// 用法: LOD(X, N) :求当前X数据是N周期内的第几个低值,N=0则从第一个有效值开始.
@@ -1746,6 +1815,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 求累乘.
         /// 用法: MULAR(X, N),统计N周期中X的乘积.N=0则从第一个有效值开始.
@@ -1779,6 +1849,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回周期数内是否连涨.
         /// 用法: UPNDAY(CLOSE, M) 表示连涨M个周期,M为常量
@@ -1809,6 +1880,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回周期数内是否连跌.
         /// 用法: DOWNNDAY(CLOSE, M) 表示连跌M个周期,M为常量
@@ -1839,6 +1911,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 是否存在.
         /// 例如: EXIST(CLOSE>OPEN,10) 表示10日内存在着阳线,第2个参数为常量
@@ -1862,6 +1935,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 是否存在.
         /// 例如: EXIST(CLOSE>OPEN,10) 表示10日内存在着阳线,第2个参数为常量
@@ -1885,6 +1959,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 一直存在.
         /// 例如: EVERY(CLOSE>OPEN, N) 表示N日内一直阳线(N应大于0, 小于总周期数, N支持变量)
@@ -1915,6 +1990,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 一直存在.
         /// 例如: EVERY(CLOSE>OPEN, N) 表示N日内一直阳线(N应大于0, 小于总周期数, N支持变量)
@@ -1945,6 +2021,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// AVEDEV(X,N) 返回平均绝对偏差
         /// </summary>
@@ -1973,6 +2050,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// DEVSQ(X,N) 返回数据偏差平方和
         /// </summary>
@@ -2002,6 +2080,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// FORCAST(X,N) 返回线性回归预测值,N支持变量
         /// </summary>
@@ -2032,6 +2111,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// SLOPE(X,N) 返回线性回归斜率,N支持变量
         /// </summary>
@@ -2064,6 +2144,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// STD(X,N) 返回估算标准差,N支持变量
         /// </summary>
@@ -2092,6 +2173,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// STDP(X,N) 返回总体标准差,N支持变量
         /// </summary>
@@ -2120,6 +2202,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// VAR(X,N) 返回估算样本方差,N支持变量
         /// </summary>
@@ -2152,6 +2235,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// VARP(X,N) 返回总体样本方差,N支持变量
         /// </summary>
@@ -2182,8 +2266,9 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
-        /// VALUEWHEN(COND,X) 
+        /// VALUEWHEN(COND,X)
         /// 当COND条件成立时,取X的当前值,否则取VALUEWHEN的上个值.
         /// </summary>
         /// <param name="X"></param>
@@ -2203,8 +2288,9 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
-        /// VALUEWHEN(COND,X) 
+        /// VALUEWHEN(COND,X)
         /// 当COND条件成立时,取X的当前值,否则取VALUEWHEN的上个值.
         /// </summary>
         /// <param name="X"></param>
@@ -2224,8 +2310,9 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
-        /// VALUEWHEN(COND,X) 
+        /// VALUEWHEN(COND,X)
         /// 当COND条件成立时,取X的当前值,否则取VALUEWHEN的上个值.
         /// </summary>
         /// <param name="X"></param>
@@ -2245,8 +2332,9 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
-        /// VALUEWHEN(COND,X) 
+        /// VALUEWHEN(COND,X)
         /// 当COND条件成立时,取X的当前值,否则取VALUEWHEN的上个值.
         /// </summary>
         /// <param name="X"></param>
@@ -2266,8 +2354,9 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
-        /// VALUEWHEN(COND,X) 
+        /// VALUEWHEN(COND,X)
         /// 当COND条件成立时,取X的当前值,否则取VALUEWHEN的上个值.
         /// </summary>
         /// <param name="X"></param>
@@ -2287,6 +2376,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2308,6 +2398,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2329,6 +2420,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2342,6 +2434,7 @@ namespace ToolGood.TdxFormula
         {
             return X ? Y : Z;
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2363,6 +2456,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2384,6 +2478,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2398,6 +2493,7 @@ namespace ToolGood.TdxFormula
             if (X) return Y;
             return new TdxNumber(Z, Y.Length);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2419,6 +2515,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2440,6 +2537,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2454,6 +2552,7 @@ namespace ToolGood.TdxFormula
             if (X == false) return Z;
             return new TdxNumber(Y, Z.Length);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2475,6 +2574,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值.
         /// 用法: IF(X, A, B)若X不为0则返回A,否则返回B
@@ -2496,6 +2596,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2517,6 +2618,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2538,6 +2640,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2551,6 +2654,7 @@ namespace ToolGood.TdxFormula
         {
             return X == false ? Y : Z;
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2572,6 +2676,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2593,6 +2698,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2604,7 +2710,7 @@ namespace ToolGood.TdxFormula
         /// <returns></returns>
         public static TdxNumber IFN(bool X, TdxNumber Y, double Z)
         {
-            if (X==false) return Y;
+            if (X == false) return Y;
             return new TdxNumber(Z, Y.Length);
         }
 
@@ -2629,6 +2735,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2650,6 +2757,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2662,8 +2770,9 @@ namespace ToolGood.TdxFormula
         public static TdxNumber IFN(bool X, double Y, TdxNumber Z)
         {
             if (X) return Z;
-            return new TdxNumber(Y,Z.Length);
+            return new TdxNumber(Y, Z.Length);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2685,6 +2794,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 根据条件求不同的值,同IF判断相反.
         /// 用法: IFN(X, A, B)若X不为0则返回B,否则返回A
@@ -2706,7 +2816,6 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
-
 
         /// <summary>
         /// RANGE(A,B,C):A在B和C范围之间,B &lt; A &lt; C
@@ -2731,6 +2840,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// RANGE(A,B,C):A在B和C范围之间,B&lt;A&lt;C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
@@ -2754,6 +2864,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// RANGE(A,B,C):A在B和C范围之间,B&lt;A&lt;C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
@@ -2777,6 +2888,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// RANGE(A,B,C):A在B和C范围之间,B&lt;A&lt;C
         /// 用法: RANGE(A, B, C)表示A大于B同时小于C时返回1,否则返回0
@@ -2800,6 +2912,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 介于.
         /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B &lt; A &lt; C或C &lt; A &lt;B, 否则返回0
@@ -2826,6 +2939,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 介于.
         /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B &lt; A &lt; C或C &lt; A &lt;B, 否则返回0
@@ -2852,6 +2966,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 介于.
         /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B&lt;A&lt;C或C&lt;A&lt;B, 否则返回0
@@ -2878,6 +2993,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 介于.
         /// 用法: BETWEEN(A, B, C)表示A处于B和C之间时返回1,B&lt;A&lt;C或C&lt;A&lt;B, 否则返回0
@@ -2904,6 +3020,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: SMA(X, N, M) :X的N日移动平均,M为权重,如Y=(X* M+Y'*(N-M))/N
@@ -2926,6 +3043,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: SMA(X, N, M) :X的N日移动平均,M为权重,如Y=(X* M+Y'*(N-M))/N
@@ -2948,6 +3066,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: SMA(X, N, M) :X的N日移动平均,M为权重,如Y=(X* M+Y'*(N-M))/N
@@ -2970,6 +3089,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: SMA(X, N, M) :X的N日移动平均,M为权重,如Y=(X* M+Y'*(N-M))/N
@@ -2992,6 +3112,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: TMA(X, A, B),A和B必须小于1,算法 Y = (A * Y'+B*X),其中Y'表示上一周期Y值.初值为X
@@ -3014,6 +3135,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: TMA(X, A, B),A和B必须小于1,算法 Y = (A * Y'+B*X),其中Y'表示上一周期Y值.初值为X
@@ -3036,6 +3158,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: TMA(X, A, B),A和B必须小于1,算法 Y = (A * Y'+B*X),其中Y'表示上一周期Y值.初值为X
@@ -3058,6 +3181,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回移动平均
         /// 用法: TMA(X, A, B),A和B必须小于1,算法 Y = (A * Y'+B*X),其中Y'表示上一周期Y值.初值为X
@@ -3082,6 +3206,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 两条线维持一定周期后交叉.
         /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
@@ -3111,6 +3236,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 两条线维持一定周期后交叉.
         /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
@@ -3140,6 +3266,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 两条线维持一定周期后交叉.
         /// 用法:LONGCROSS(A, B, N)表示A在N周期内都小于B,本周期从下方向上穿过B时返回1,否则返回0
@@ -3169,7 +3296,6 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
-
 
         /// <summary>
         /// 返回是否持续存在X>Y
@@ -3205,6 +3331,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回是否持续存在X>Y
         /// 用法: NDAY(CLOSE, OPEN,3) 表示连续3日收阳线
@@ -3239,6 +3366,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// 返回是否持续存在X>Y
         /// 用法: NDAY(CLOSE, OPEN,3) 表示连续3日收阳线
@@ -3302,6 +3430,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// EXISTR(X,A,B):是否存在(前几日到前几日间).
         /// 例如: EXISTR(CLOSE>OPEN,10,5) 表示从前10日内到前5日内存在着阳线
@@ -3330,6 +3459,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// LAST(X,A,B):持续存在.
         /// 例如: LAST(CLOSE>OPEN,10,5) 表示从前10日到前5日内一直阳线
@@ -3358,6 +3488,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// LAST(X,A,B):持续存在.
         /// 例如: LAST(CLOSE>OPEN,10,5) 表示从前10日到前5日内一直阳线
@@ -3386,6 +3517,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// COVAR(X,Y,N) 返回X和Y的N周期的协方差,N支持变量
         /// </summary>
@@ -3423,6 +3555,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// RELATE(X,Y,N) 返回X和Y的N周期的相关系数,N支持变量
         /// </summary>
@@ -3498,6 +3631,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// N周期前的M周期内的第T个最小值.
         /// 用法: FINDLOW(VAR, N, M, T) :VAR在N日前的M天内第T个最低价
@@ -3531,6 +3665,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(array);
         }
+
         /// <summary>
         /// N周期前的M周期内的第T个最大值到当前周期的周期数.
         /// 用法: FINDHIGHBARS(VAR, N, M, T) :VAR在N日前的M天内第T个最高价到当前周期的周期数
@@ -3622,6 +3757,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(z);
         }
+
         /// <summary>
         /// 属于未来函数,之字转向.
         /// 用法: ZIG(K, N),当价格变化量超过N%时转向,K表示0:开盘价,1:最高价,2:最低价,3:收盘价,其余:数组信息
@@ -3647,6 +3783,7 @@ namespace ToolGood.TdxFormula
             }
             return new TdxNumber(z);
         }
+
         private static List<int> ZigPeeka(double[] k, double x)
         {
             const int state_none = 0;
@@ -3756,11 +3893,11 @@ namespace ToolGood.TdxFormula
             return peers;
         }
 
-        #endregion
-
+        #endregion 未来函数
 
         #region private
-        static double LinearRegressionCoefficient(List<double> parray, double averagex, double denominator)
+
+        private static double LinearRegressionCoefficient(List<double> parray, double averagex, double denominator)
         {
             //求出横纵坐标的平均值
             double averagey = parray.Average();
@@ -3773,7 +3910,8 @@ namespace ToolGood.TdxFormula
             //回归系数b（Regression Coefficient）
             return numerator / denominator;
         }
-        static int InsertArray_Max2Min(List<double> arr, double x)
+
+        private static int InsertArray_Max2Min(List<double> arr, double x)
         {
             int low = 0, high = arr.Count - 1;
             int mid;
@@ -3788,7 +3926,8 @@ namespace ToolGood.TdxFormula
             arr.Insert(low, x);
             return low + 1;
         }
-        static int InsertArray_Min2Max(List<double> arr, double x)
+
+        private static int InsertArray_Min2Max(List<double> arr, double x)
         {
             int low = 0, high = arr.Count - 1;
             int mid;
@@ -3803,6 +3942,7 @@ namespace ToolGood.TdxFormula
             arr.Insert(low, x);
             return low + 1;
         }
-        #endregion
+
+        #endregion private
     }
 }
