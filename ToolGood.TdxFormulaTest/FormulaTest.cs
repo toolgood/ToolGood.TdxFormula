@@ -663,7 +663,7 @@ namespace ToolGood.TdxFormulaTest
             var TEST = NOT(C > 4);
 
             for (int i = 20; i < TEST.Length; i++) {
-                Assert.AreEqual(TEST[i], data[i].Value, 0.001);
+                Assert.AreEqual(TEST[i]?1:0, data[i].Value, 0.001);
             }
         }
         [Test]
