@@ -86,6 +86,34 @@ namespace ToolGood.TdxFormula
             }
             return new FqNumber(array);
         }
+        /// <summary>
+        /// 构造
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="groupFunc"></param>
+        /// <param name="valueFunc"></param>
+        /// <returns></returns>
+        public static FqNumber Create<T>(IEnumerable<T> list, Func<T, int> groupFunc, Func<T, double> valueFunc) where T : class
+        {
+            Dictionary<int, List<T>> dict = new Dictionary<int, List<T>>();
+            foreach (var item in list) {
+                var group = groupFunc(item);
+                if (dict.ContainsKey(group) == false) {
+                    dict[group] = new List<T>();
+                }
+                dict[group].Add(item);
+            }
+            var array = new List<TdxNumber>();
+            foreach (var (_, item) in dict) {
+                double[] temps = new double[item.Count];
+                for (int j = 0; j < item.Count; j++) {
+                    temps[j] = valueFunc(item[j]);
+                }
+                array.Add(temps);
+            }
+            return new FqNumber(array);
+        }
 
         #endregion 构造函数
 
