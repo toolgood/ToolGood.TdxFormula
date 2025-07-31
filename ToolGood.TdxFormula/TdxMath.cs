@@ -25,6 +25,22 @@ namespace ToolGood.TdxFormula
             return new TdxNumber(array);
         }
 
+        /// <summary>
+        /// 求逻辑非.
+        /// 用法: NOT(X)返回非X,即当X=0时返回1,否则返回0
+        /// 例如: NOT(ISUP)表示平盘或收阴
+        /// </summary>
+        /// <param name="X"></param>
+        /// <returns></returns>
+        public static TdxBoolean NOT(TdxBoolean X)
+        {
+            var array = new bool[X.Length];
+            for (int i = 0; i < array.Length; i++) {
+                if (X[i] == false) { array[i] = true; }
+            }
+            return new TdxBoolean(array);
+        }
+
         #region Math
 
         /// <summary>
@@ -447,7 +463,7 @@ namespace ToolGood.TdxFormula
         /// </summary>
         /// <param name="Values"></param>
         /// <returns></returns>
-        public static double[] MAX(params TdxNumber[] Values)
+        public static TdxNumber MAX(params TdxNumber[] Values)
         {
             List<double[]> doubles = new List<double[]>();
             foreach (var item in Values) {
@@ -475,7 +491,7 @@ namespace ToolGood.TdxFormula
         /// </summary>
         /// <param name="Values"></param>
         /// <returns></returns>
-        public static double[] MIN(params TdxNumber[] Values)
+        public static TdxNumber MIN(params TdxNumber[] Values)
         {
             List<double[]> doubles = new List<double[]>();
             foreach (var item in Values) {
@@ -3731,6 +3747,36 @@ namespace ToolGood.TdxFormula
         }
 
         #region 未来函数
+
+        /// <summary>
+        /// 引用若干周期后的数据
+        /// </summary>
+        /// <param name="k"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static TdxNumber REFV(TdxNumber k, int n)
+        {
+            double[] array = new double[k.Length];
+            for (int i = 0; i < k.Length - n; i++) {
+                array[i] = k[i + n];
+            }
+            return new TdxNumber(array);
+        }
+
+        /// <summary>
+        /// 引用若干周期后的数据
+        /// </summary>
+        /// <param name="k"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static TdxBoolean REFV(TdxBoolean k, int n)
+        {
+            bool[] array = new bool[k.Length];
+            for (int i = 0; i < k.Length - n; i++) {
+                array[i] = k[i + n];
+            }
+            return new TdxBoolean(array);
+        }
 
         /// <summary>
         /// 属于未来函数,之字转向.

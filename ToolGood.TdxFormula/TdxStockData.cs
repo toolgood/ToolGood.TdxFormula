@@ -64,6 +64,7 @@ namespace ToolGood.TdxFormula
         /// </summary>
         public TdxStockData()
         { }
+
         /// <summary>
         /// 构造函数，支持 IStockData[] 和 List&lt;IStockData>
         /// </summary>

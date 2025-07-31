@@ -111,7 +111,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator &(TdxBoolean a, TdxBoolean b)
+        public static TdxBoolean operator &(TdxBoolean a, TdxBoolean b)
         {
             if (a.Length != b.Length) throw new Exception();
             bool[] temp = new bool[a.Length];
@@ -128,7 +128,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator &(TdxBoolean a, bool[] b)
+        public static TdxBoolean operator &(TdxBoolean a, bool[] b)
         {
             if (a.Length != b.Length) throw new Exception();
             bool[] temp = new bool[a.Length];
@@ -162,7 +162,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator &(bool a, TdxBoolean b)
+        public static TdxBoolean operator &(bool a, TdxBoolean b)
         {
             bool[] temp = new bool[b.Length];
             for (int i = 0; i < b.Length; i++) {
@@ -178,7 +178,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator &(TdxBoolean a, bool b)
+        public static TdxBoolean operator &(TdxBoolean a, bool b)
         {
             bool[] temp = new bool[a.Length];
             for (int i = 0; i < a.Length; i++) {
@@ -198,7 +198,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator |(TdxBoolean a, TdxBoolean b)
+        public static TdxBoolean operator |(TdxBoolean a, TdxBoolean b)
         {
             if (a.Length != b.Length) throw new Exception();
             bool[] temp = new bool[a.Length];
@@ -215,7 +215,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator |(TdxBoolean a, bool[] b)
+        public static TdxBoolean operator |(TdxBoolean a, bool[] b)
         {
             if (a.Length != b.Length) throw new Exception();
             bool[] temp = new bool[a.Length];
@@ -232,7 +232,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator |(bool[] a, TdxBoolean b)
+        public static TdxBoolean operator |(bool[] a, TdxBoolean b)
         {
             if (a.Length != b.Length) throw new Exception();
             bool[] temp = new bool[a.Length];
@@ -249,7 +249,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator |(bool a, TdxBoolean b)
+        public static TdxBoolean operator |(bool a, TdxBoolean b)
         {
             bool[] temp = new bool[b.Length];
             for (int i = 0; i < b.Length; i++) {
@@ -265,7 +265,7 @@ namespace ToolGood.TdxFormula
         /// <param name="b"></param>
         /// <returns></returns>
         [System.Diagnostics.DebuggerNonUserCode]
-        public static bool[] operator |(TdxBoolean a, bool b)
+        public static TdxBoolean operator |(TdxBoolean a, bool b)
         {
             bool[] temp = new bool[a.Length];
             for (int i = 0; i < a.Length; i++) {
@@ -1656,7 +1656,7 @@ namespace ToolGood.TdxFormula
         #region operator /
 
         /// <summary>
-        /// operator *
+        /// operator /
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -1673,7 +1673,7 @@ namespace ToolGood.TdxFormula
         }
 
         /// <summary>
-        /// operator *
+        /// operator /
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -1689,6 +1689,43 @@ namespace ToolGood.TdxFormula
         }
 
         #endregion operator /
+
+        #region operator %
+
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        [System.Diagnostics.DebuggerNonUserCode]
+        public static TdxNumber operator %(TdxBoolean a, double[] b)
+        {
+            if (a.Length != b.Length) throw new Exception();
+            double[] temp = new double[a.Length];
+            for (int i = 0; i < a.Length; i++) {
+                temp[i] = (a[i] ? 1 : 0) % b[i];
+            }
+            return new TdxNumber(temp);
+        }
+
+        /// <summary>
+        /// operator %
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        [System.Diagnostics.DebuggerNonUserCode]
+        public static TdxNumber operator %(TdxBoolean a, double b)
+        {
+            double[] temp = new double[a.Length];
+            for (int i = 0; i < a.Length; i++) {
+                temp[i] = (a[i] ? 1 : 0) % b;
+            }
+            return new TdxNumber(temp);
+        }
+
+        #endregion operator %
 
         #region override
 
